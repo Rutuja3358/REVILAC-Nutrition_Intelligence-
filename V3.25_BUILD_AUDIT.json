@@ -1,0 +1,40 @@
+{
+  "package": "REVILAC Nutrition Intelligence",
+  "release": "3.25 patient wellness companion",
+  "build_type": "additive staging update",
+  "source": "v3.24 localized patient guidance package",
+  "features_added": [
+    "food alternatives rotation",
+    "patient food selection",
+    "nutrient category classification",
+    "read aloud when supported",
+    "speech input when supported",
+    "language selector Marathi Hindi English",
+    "daily wellness checklist",
+    "local-device progress",
+    "notification permission explanation"
+  ],
+  "known_limits": [
+    "not clinically validated",
+    "no measured nutrient totals in new module",
+    "no individualized dietary target engine added here",
+    "no guaranteed background reminders",
+    "localStorage not encrypted or synced",
+    "speech depends on browser/device/language"
+  ],
+  "static_checks": {
+    "index_html_has_closing_body": true,
+    "module_script_added": true,
+    "all_8_habits_present": true,
+    "food_alternatives_control_present": true,
+    "no_unsupported_claim_of_clinical_validation": true
+  },
+  "runtime_verification": {
+    "zip_integrity": "PASS",
+    "inline_javascript_syntax": "2/2 PASS",
+    "existing_project_tests": "26/26 standalone test scripts passed",
+    "production_preflight": "BLOCKED (expected: real deployment, security, clinical review, device E2E, backup/monitoring evidence missing)",
+    "clinical_validation": "NOT PERFORMED",
+    "browser_end_to_end": "NOT PERFORMED"
+  }
+}

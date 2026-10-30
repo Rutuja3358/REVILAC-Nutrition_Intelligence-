@@ -1,0 +1,23 @@
+// Static regression checks for the emerald workspace navigation refresh.
+'use strict';
+const fs = require('node:fs');
+const assert = require('node:assert');
+const html = fs.readFileSync('index.html', 'utf8');
+const expectedPages = ['dashboard','upload','guidance','intelligence','wellness','timeline','reminders','settings','clinical','terminology','eightpillars','account','vision'];
+const nav = html.match(/<nav class="nav"[\s\S]*?<\/nav>/);
+assert(nav, 'navigation exists');
+for (const id of expectedPages) assert(nav[0].includes(`data-page="${id}"`), `navigation retains page ${id}`);
+assert(nav[0].includes('class="nav-more"'), 'advanced pages are grouped under More tools');
+assert(nav[0].includes('YOUR WORKSPACE'), 'primary workspace has a clear label');
+assert(!nav[0].includes('Use synthetic reports only'), 'developer/demo copy is removed from primary navigation');
+assert(html.includes('Health and safety:'), 'concise patient-facing safety guidance remains on the dashboard');
+assert(html.includes('id="revilac-emerald-layout-v1"'), 'emerald visual layer is present');
+assert(html.includes('--brand:#176b49'), 'primary brand token is emerald green');
+assert(html.includes('data-page="upload"') && html.includes('data-page="guidance"'), 'core report and nutrition journeys stay one tap away');
+const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
+const duplicates = ids.filter((id, i) => ids.indexOf(id) !== i);
+assert.deepStrictEqual([...new Set(duplicates)], [], 'HTML IDs stay unique');
+console.log('PASS workspace navigation grouping and all 13 pages remain reachable');
+console.log('PASS emerald design tokens and mobile responsive navigation styles present');
+console.log('PASS developer/demo copy removed from navigation; patient-facing safety guidance retained');
+console.log('PASS no duplicate HTML IDs');

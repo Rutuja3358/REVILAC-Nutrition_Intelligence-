@@ -1,0 +1,10 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const source = fs.readFileSync(require('node:path').join(__dirname, 'report-wellness-integration.js'), 'utf8');
+assert.match(source, /const matches=a\.matches\.filter\(Boolean\)/, 'wellness renderer must retain all report-family matches');
+assert.match(source, /const riskMatches=matches\.filter\(x=>highRiskKeys\.includes\(x\.key\)\|\|x\.risk===true\)/, 'risk evaluation must cover every matched report family');
+assert.match(source, /const highRisk=riskMatches\.length>0/, 'any high-risk match must trigger the safety hold');
+assert.match(source, /const combinedReportLabel=matches\.map\(x=>x\.family\|\|x\.key\)\.join\(' \+ '\)/, 'displayed report label must include all matched families');
+assert.match(source, /esc\(combinedReportLabel\|\|m\.family\|\|m\.key\)/, 'rendered heading must communicate combined report context');
+console.log('PASS: mixed report families are retained; any high-risk match pauses tailored food guidance; combined family label is rendered.');
