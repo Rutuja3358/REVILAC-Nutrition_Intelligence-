@@ -1,0 +1,774 @@
+{
+  "catalogueName": "REVILAC Free Local Terminology Starter Catalogue",
+  "catalogueVersion": "0.2.0",
+  "created": "2026-10-21",
+  "important": "Starter concepts only. Empty code means no official code assigned. Verify mappings against official, licensed/current terminology releases. Not a diagnostic database. Expanded starter catalogue; still incomplete and intentionally does not assign unverified official codes.",
+  "concepts": [
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Hemoglobin (Hb)",
+      "aliases": [
+        "haemoglobin",
+        "hb",
+        "hemoglobin",
+        "haemoglobin level"
+      ],
+      "kind": "laboratory observation",
+      "note": "Lab concept only. Confirm units, age/sex/pregnancy context and lab reference range. Exact LOINC mapping must be verified against official release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Ferritin",
+      "aliases": [
+        "ferritin",
+        "serum ferritin"
+      ],
+      "kind": "laboratory observation",
+      "note": "Lab concept only. Interpretation may depend on inflammation and clinical context. Exact LOINC mapping must be verified."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Vitamin B12",
+      "aliases": [
+        "b12",
+        "vitamin b12",
+        "cobalamin",
+        "serum b12"
+      ],
+      "kind": "laboratory observation",
+      "note": "Lab concept only. Assay, units and clinical context matter. Exact LOINC mapping must be verified."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "25-hydroxy Vitamin D",
+      "aliases": [
+        "vitamin d",
+        "25 oh vitamin d",
+        "25-hydroxyvitamin d",
+        "25 oh d"
+      ],
+      "kind": "laboratory observation",
+      "note": "Distinguish the specific assay and units before mapping."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Glucose",
+      "aliases": [
+        "glucose",
+        "blood sugar",
+        "fasting glucose",
+        "random glucose"
+      ],
+      "kind": "laboratory observation",
+      "note": "Fasting/random/post-meal status and specimen type are essential context."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Hemoglobin A1c (HbA1c)",
+      "aliases": [
+        "hba1c",
+        "a1c",
+        "glycated hemoglobin",
+        "glycosylated hemoglobin"
+      ],
+      "kind": "laboratory observation",
+      "note": "Confirm assay and unit (% or mmol/mol). Do not diagnose from OCR alone."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Creatinine",
+      "aliases": [
+        "creatinine",
+        "serum creatinine"
+      ],
+      "kind": "laboratory observation",
+      "note": "Units, age and context matter; eGFR is not interchangeable with creatinine."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Estimated glomerular filtration rate (eGFR)",
+      "aliases": [
+        "egfr",
+        "estimated gfr",
+        "glomerular filtration rate"
+      ],
+      "kind": "laboratory observation",
+      "note": "Equation, units and patient factors affect interpretation."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Alanine aminotransferase (ALT)",
+      "aliases": [
+        "alt",
+        "sgpt",
+        "alanine aminotransferase"
+      ],
+      "kind": "laboratory observation",
+      "note": "Lab-specific reference ranges and clinical context required."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Aspartate aminotransferase (AST)",
+      "aliases": [
+        "ast",
+        "sgot",
+        "aspartate aminotransferase"
+      ],
+      "kind": "laboratory observation",
+      "note": "Lab-specific reference ranges and clinical context required."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Thyroid-stimulating hormone (TSH)",
+      "aliases": [
+        "tsh",
+        "thyroid stimulating hormone"
+      ],
+      "kind": "laboratory observation",
+      "note": "Pregnancy, medicines, assay and clinical context may change interpretation."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Total cholesterol",
+      "aliases": [
+        "total cholesterol",
+        "cholesterol"
+      ],
+      "kind": "laboratory observation",
+      "note": "Confirm lipid panel component and units."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Low-density lipoprotein cholesterol (LDL-C)",
+      "aliases": [
+        "ldl",
+        "ldl-c",
+        "low density lipoprotein"
+      ],
+      "kind": "laboratory observation",
+      "note": "Direct vs calculated method and units may matter."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "High-density lipoprotein cholesterol (HDL-C)",
+      "aliases": [
+        "hdl",
+        "hdl-c",
+        "high density lipoprotein"
+      ],
+      "kind": "laboratory observation",
+      "note": "Confirm panel component and units."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Triglycerides",
+      "aliases": [
+        "triglyceride",
+        "triglycerides",
+        "tg"
+      ],
+      "kind": "laboratory observation",
+      "note": "Fasting status and units may matter."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "White blood cell count (WBC)",
+      "aliases": [
+        "wbc",
+        "white blood cell count",
+        "leukocyte count"
+      ],
+      "kind": "laboratory observation",
+      "note": "Differential count is a separate concept; confirm units and reference range."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Platelet count",
+      "aliases": [
+        "platelet",
+        "platelets",
+        "plt",
+        "platelet count"
+      ],
+      "kind": "laboratory observation",
+      "note": "Confirm units and lab reference range."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Serum potassium",
+      "aliases": [
+        "potassium",
+        "serum potassium",
+        "k"
+      ],
+      "kind": "laboratory observation",
+      "note": "Potentially high-risk result; confirm sample quality and seek prompt clinician advice for critical results."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Serum sodium",
+      "aliases": [
+        "sodium",
+        "serum sodium",
+        "na"
+      ],
+      "kind": "laboratory observation",
+      "note": "Confirm units and clinical context."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Albumin",
+      "aliases": [
+        "albumin",
+        "serum albumin"
+      ],
+      "kind": "laboratory observation",
+      "note": "Non-specific; not a standalone nutrition diagnosis."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Calcium",
+      "aliases": [
+        "calcium",
+        "serum calcium",
+        "total calcium"
+      ],
+      "kind": "laboratory observation",
+      "note": "Total vs ionized calcium differ; albumin/context may matter."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Folate",
+      "aliases": [
+        "folate",
+        "folic acid",
+        "serum folate"
+      ],
+      "kind": "laboratory observation",
+      "note": "Assay and clinical context matter."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "C-reactive protein (CRP)",
+      "aliases": [
+        "crp",
+        "c reactive protein"
+      ],
+      "kind": "laboratory observation",
+      "note": "Inflammation marker; not a nutrition diagnosis by itself."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Iron studies",
+      "aliases": [
+        "iron profile",
+        "serum iron",
+        "transferrin saturation",
+        "tibc"
+      ],
+      "kind": "laboratory panel/concept",
+      "note": "Individual tests are distinct. Map each component separately after confirming exact name."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Type 2 diabetes mellitus (concept)",
+      "aliases": [
+        "type 2 diabetes",
+        "diabetes mellitus type 2",
+        "t2dm"
+      ],
+      "kind": "condition concept",
+      "note": "Concept label only; no ICD-11/SNOMED code supplied. Diagnosis must be clinician-confirmed and official code lookup performed."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Chronic kidney disease (concept)",
+      "aliases": [
+        "ckd",
+        "chronic kidney disease",
+        "kidney disease"
+      ],
+      "kind": "condition concept",
+      "note": "Concept label only; no code assigned. Do not derive a kidney-specific diet from this term alone."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Iron deficiency (concept)",
+      "aliases": [
+        "iron deficiency",
+        "low iron"
+      ],
+      "kind": "condition concept",
+      "note": "Concept label only; low Hb alone does not establish iron deficiency."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Vitamin B12 deficiency (concept)",
+      "aliases": [
+        "b12 deficiency",
+        "vitamin b12 deficiency"
+      ],
+      "kind": "condition concept",
+      "note": "Concept label only; requires appropriate clinical interpretation."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Complete blood count (CBC)",
+      "aliases": [
+        "cbc",
+        "complete blood count",
+        "full blood count"
+      ],
+      "kind": "laboratory panel",
+      "note": "Panel identity only; map each component test separately where required. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Mean corpuscular volume (MCV)",
+      "aliases": [
+        "mcv",
+        "mean corpuscular volume"
+      ],
+      "kind": "laboratory observation",
+      "note": "Confirm units and assay; exact LOINC mapping requires official verification. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Mean corpuscular haemoglobin (MCH)",
+      "aliases": [
+        "mch",
+        "mean corpuscular hemoglobin"
+      ],
+      "kind": "laboratory observation",
+      "note": "Confirm units and exact analyte/method. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Mean corpuscular haemoglobin concentration (MCHC)",
+      "aliases": [
+        "mchc"
+      ],
+      "kind": "laboratory observation",
+      "note": "Confirm units and laboratory context. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Reticulocyte count",
+      "aliases": [
+        "reticulocyte",
+        "retic count"
+      ],
+      "kind": "laboratory observation",
+      "note": "Interpret with CBC and clinical context. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Serum iron",
+      "aliases": [
+        "serum iron",
+        "iron level"
+      ],
+      "kind": "laboratory observation",
+      "note": "Serum iron alone is not sufficient to diagnose iron deficiency. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Total iron-binding capacity (TIBC)",
+      "aliases": [
+        "tibc",
+        "total iron binding capacity"
+      ],
+      "kind": "laboratory observation",
+      "note": "Interpret alongside ferritin, transferrin saturation and context. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Transferrin saturation",
+      "aliases": [
+        "tsat",
+        "transferrin saturation"
+      ],
+      "kind": "laboratory observation",
+      "note": "Confirm units and calculation. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Fasting plasma glucose",
+      "aliases": [
+        "fasting glucose",
+        "fpg",
+        "fasting blood sugar",
+        "fbs"
+      ],
+      "kind": "laboratory observation",
+      "note": "Fasting status and units matter; do not diagnose from a single unverified value. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Random blood glucose",
+      "aliases": [
+        "random glucose",
+        "rbs",
+        "random blood sugar"
+      ],
+      "kind": "laboratory observation",
+      "note": "Meal timing, symptoms, units and clinical criteria matter. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Lipid profile",
+      "aliases": [
+        "lipid panel",
+        "cholesterol profile"
+      ],
+      "kind": "laboratory panel",
+      "note": "Map individual components separately; fasting status may affect some tests. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "HDL cholesterol",
+      "aliases": [
+        "hdl",
+        "high density lipoprotein"
+      ],
+      "kind": "laboratory observation",
+      "note": "Verify units and lab reference. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "LDL cholesterol",
+      "aliases": [
+        "ldl",
+        "low density lipoprotein"
+      ],
+      "kind": "laboratory observation",
+      "note": "Identify calculated vs direct LDL and units. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Free thyroxine (FT4)",
+      "aliases": [
+        "ft4",
+        "free t4",
+        "free thyroxine"
+      ],
+      "kind": "laboratory observation",
+      "note": "Interpret alongside TSH and clinical context. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Free triiodothyronine (FT3)",
+      "aliases": [
+        "ft3",
+        "free t3"
+      ],
+      "kind": "laboratory observation",
+      "note": "Interpret alongside other thyroid tests and clinical context. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Serum creatinine",
+      "aliases": [
+        "serum creatinine",
+        "creatinine"
+      ],
+      "kind": "laboratory observation",
+      "note": "Interpret with age, sex, muscle mass, medication and eGFR where appropriate. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Blood urea nitrogen / Urea",
+      "aliases": [
+        "bun",
+        "blood urea nitrogen",
+        "urea"
+      ],
+      "kind": "laboratory observation",
+      "note": "Hydration, diet, renal function and units affect interpretation. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Urine albumin-to-creatinine ratio (uACR)",
+      "aliases": [
+        "uacr",
+        "urine acr",
+        "albumin creatinine ratio"
+      ],
+      "kind": "laboratory observation",
+      "note": "Confirm specimen and units; clinician interpretation needed. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Sodium",
+      "aliases": [
+        "serum sodium",
+        "na",
+        "sodium"
+      ],
+      "kind": "laboratory observation",
+      "note": "Electrolyte results can be urgent; avoid self-treatment. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Potassium",
+      "aliases": [
+        "serum potassium",
+        "k",
+        "potassium"
+      ],
+      "kind": "laboratory observation",
+      "note": "Abnormal values may be urgent; do not recommend dietary changes without clinical review. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Magnesium",
+      "aliases": [
+        "serum magnesium",
+        "magnesium"
+      ],
+      "kind": "laboratory observation",
+      "note": "Units, renal function and medicines may matter. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Phosphate / Phosphorus",
+      "aliases": [
+        "phosphate",
+        "phosphorus"
+      ],
+      "kind": "laboratory observation",
+      "note": "Kidney status and units matter for interpretation and dietary advice. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Alkaline phosphatase (ALP)",
+      "aliases": [
+        "alp",
+        "alkaline phosphatase"
+      ],
+      "kind": "laboratory observation",
+      "note": "Age, pregnancy and liver/bone context may affect interpretation. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Bilirubin, total",
+      "aliases": [
+        "total bilirubin",
+        "bilirubin"
+      ],
+      "kind": "laboratory observation",
+      "note": "Fraction, units and clinical context may be needed. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Erythrocyte sedimentation rate (ESR)",
+      "aliases": [
+        "esr",
+        "sedimentation rate"
+      ],
+      "kind": "laboratory observation",
+      "note": "Nonspecific; interpret with symptoms and other findings. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Urinalysis",
+      "aliases": [
+        "urine routine",
+        "urinalysis",
+        "urine r/e"
+      ],
+      "kind": "laboratory panel",
+      "note": "Individual analytes and specimen details may need separate mappings. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Urine protein",
+      "aliases": [
+        "protein in urine",
+        "urine protein"
+      ],
+      "kind": "laboratory observation",
+      "note": "Method and specimen type matter. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Vitamin B9 / Folate",
+      "aliases": [
+        "folate",
+        "vitamin b9",
+        "serum folate"
+      ],
+      "kind": "laboratory observation",
+      "note": "Serum vs red-cell folate and units differ. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Parathyroid hormone (PTH)",
+      "aliases": [
+        "pth",
+        "parathyroid hormone"
+      ],
+      "kind": "laboratory observation",
+      "note": "Calcium, phosphate, kidney function and assay context matter. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Insulin",
+      "aliases": [
+        "serum insulin",
+        "insulin level"
+      ],
+      "kind": "laboratory observation",
+      "note": "Fasting status and clinical context are essential. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "C-peptide",
+      "aliases": [
+        "c peptide",
+        "c-peptide"
+      ],
+      "kind": "laboratory observation",
+      "note": "Sampling conditions and clinical context matter. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Prothrombin time / INR",
+      "aliases": [
+        "pt",
+        "inr",
+        "prothrombin time"
+      ],
+      "kind": "laboratory observation",
+      "note": "Medication and bleeding-risk context may be important. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Troponin",
+      "aliases": [
+        "troponin i",
+        "troponin t",
+        "hs troponin"
+      ],
+      "kind": "laboratory observation",
+      "note": "Potential emergency marker; urgent symptoms require emergency care. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Pregnancy test / hCG",
+      "aliases": [
+        "hcg",
+        "beta hcg",
+        "pregnancy test"
+      ],
+      "kind": "laboratory observation",
+      "note": "Test type, timing and clinical context matter. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Body mass index (BMI)",
+      "aliases": [
+        "bmi",
+        "body mass index"
+      ],
+      "kind": "clinical measurement",
+      "note": "Use appropriate age-specific interpretation for children/adolescents. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Blood pressure",
+      "aliases": [
+        "bp",
+        "blood pressure"
+      ],
+      "kind": "clinical measurement",
+      "note": "Technique, repeated measurements and clinical context matter. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Body weight",
+      "aliases": [
+        "weight",
+        "body mass"
+      ],
+      "kind": "clinical measurement",
+      "note": "Use units and measurement date; interpret changes in context. Exact official code must be verified against the current authorized terminology release."
+    },
+    {
+      "system": "LOCAL STARTER",
+      "code": "",
+      "display": "Height",
+      "aliases": [
+        "height",
+        "stature"
+      ],
+      "kind": "clinical measurement",
+      "note": "Use units and age-appropriate measurement technique. Exact official code must be verified against the current authorized terminology release."
+    }
+  ]
+}

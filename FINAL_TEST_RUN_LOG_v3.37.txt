@@ -1,0 +1,9 @@
+REVILAC Nutrition Intelligence v3.37 — Local test evidence
+Generated: 2026-10-22T02:53:25Z
+
+RESULT: 39/39 scripts passed; 0 failed.
+ Syntax check: 51/51 root JavaScript files passed. 
+RESULT: PASS — structural checks passed. This is not a full browser or clinical test. v3.32 package structural checks passed; concepts: 66 
+PASS 6/6 inline JavaScript blocks parse
+
+Scope limitation: tests are automated code/structure checks. Browser OCR accuracy, real medical report coverage, external services, production security, clinical safety and live deployment are NOT verified. OCR helpers load from public CDNs and require internet. Use synthetic/demo data only until the applicable release gates are independently cleared.

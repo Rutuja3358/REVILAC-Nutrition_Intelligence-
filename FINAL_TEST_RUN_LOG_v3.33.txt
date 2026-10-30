@@ -1,0 +1,119 @@
+REVILAC Nutrition Intelligence v3.33 — local automated verification
+All local tests are evidence of code-level checks only, not production certification.
+
+PASS test_account_api_hardening.js (exit 0)
+PASS test_account_server_bind_guard.js (exit 0)
+PASS test_account_sync_package.js (exit 0)
+PASS test_auth_rate_limit.js (exit 0)
+PASS test_backup_restore.js (exit 0)
+PASS test_completion_matrix.js (exit 0)
+PASS test_csv_export_safety.js (exit 0)
+PASS test_deep_workbench.js (exit 0)
+PASS test_export_metadata.js (exit 0)
+PASS test_final_guidance.js (exit 0)
+PASS test_final_integration_scope.js (exit 0)
+PASS test_food_source_only_policy.js (exit 0)
+PASS test_fooddata_central.js (exit 0)
+PASS test_fooddata_central_mapper.js (exit 0)
+PASS test_local_server_api.js (exit 0)
+PASS test_local_server_files.js (exit 0)
+PASS test_multi_measurement_picker.js (exit 0)
+PASS test_multi_measurement_save.js (exit 0)
+PASS test_multi_result_guard.js (exit 0)
+PASS test_nutrition_calculator_v326.js (exit 0)
+PASS test_nutrition_core.js (exit 0)
+PASS test_nutrition_ui_safety_gate.js (exit 0)
+PASS test_ocr_analyte_pairing.js (exit 0)
+PASS test_ocr_date_safety.js (exit 0)
+PASS test_ocr_numeric_ambiguity.js (exit 0)
+PASS test_production_preflight.js (exit 0)
+PASS test_pwa_package.js (exit 0)
+PASS test_quick_food_swap.js (exit 0)
+PASS test_quick_food_swap_localization.js (exit 0)
+PASS test_report_file_safety.js (exit 0)
+PASS test_report_save_validation.js (exit 0)
+PASS test_report_wellness_integration.js (exit 0)
+PASS test_terminology.js (exit 0)
+PASS test_terminology_runtime.js (exit 0)
+PASS test_ui_stored_id_safety.js (exit 0)
+PASS test_universal_report_nutrition.js (exit 0)
+PASS test_wellness_plan.js (exit 0)
+PASS syntax:account-server.js (exit 0)
+PASS syntax:local-server.js (exit 0)
+PASS syntax:terminology-server.js (exit 0)
+PASS syntax:nutrition-core.js (exit 0)
+PASS syntax:universal-report-nutrition.js (exit 0)
+PASS syntax:report-wellness-integration.js (exit 0)
+PASS syntax:fooddata-central-client.js (exit 0)
+PASS syntax:revilac-final-guidance.js (exit 0)
+PASS test_package.py (exit 0)
+PASS deep_quality_audit.py (exit 0)
+PASS test_http_smoke.py (exit 0)
+
+PRODUCTION PREFLIGHT
+{
+  "exit_code": 2,
+  "summary": {
+    "total": 18,
+    "passed": 7,
+    "blockers": 11,
+    "warnings": 0
+  },
+  "blockers": [
+    {
+      "id": "database",
+      "label": "Managed persistent database configured",
+      "detail": "DATABASE_URL is not set. The current account API stores data in a local JSON file; do not expose it publicly."
+    },
+    {
+      "id": "https",
+      "label": "HTTPS termination explicitly configured",
+      "detail": "Set only after a trusted HTTPS reverse proxy/load balancer is configured and verified."
+    },
+    {
+      "id": "otp",
+      "label": "Email/mobile ownership verification provider configured",
+      "detail": "No verified email/SMS provider configured; account ownership and recovery are not production-ready."
+    },
+    {
+      "id": "rate_limit",
+      "label": "Shared rate limiter configured",
+      "detail": "In-memory per-process throttling is not sufficient for multi-instance production."
+    },
+    {
+      "id": "session",
+      "label": "Production session secret configured",
+      "detail": "A >=32-character secret is not configured. Do not reuse a password."
+    },
+    {
+      "id": "security_review",
+      "label": "Independent security review recorded",
+      "detail": "Requires documented review and remediation of findings; an environment flag alone is not evidence."
+    },
+    {
+      "id": "privacy_review",
+      "label": "Privacy/legal review recorded",
+      "detail": "Requires actual review of consent, retention, deletion, breach response, and applicable law."
+    },
+    {
+      "id": "clinical_review",
+      "label": "Clinical/nutrition validation recorded",
+      "detail": "Requires qualified expert sign-off and validated test evidence; not just a configuration toggle."
+    },
+    {
+      "id": "e2e",
+      "label": "Real-device end-to-end test evidence recorded",
+      "detail": "Requires tested Android/iOS/desktop journeys and notification behavior."
+    },
+    {
+      "id": "backup",
+      "label": "Backup/restore drill evidence recorded",
+      "detail": "Requires a successful restore drill from an independently stored backup."
+    },
+    {
+      "id": "monitoring",
+      "label": "Monitoring and incident response configured",
+      "detail": "Requires health monitoring, logs, alerts, and an incident response owner."
+    }
+  ]
+}

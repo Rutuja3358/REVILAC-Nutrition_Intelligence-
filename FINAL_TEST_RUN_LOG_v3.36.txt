@@ -1,0 +1,400 @@
+
+> revilac-nutrition-intelligence@3.36.0 test
+> node scripts/run-tests.js
+
+
+=== test_account_api_hardening.js ===
+PASS local account API register/token flow
+PASS validated sync payload accepted
+PASS unsupported fields and oversized field rejected
+PASS sync data round-trip including nutritionContext
+PASS password change rejects wrong current password and rotates credential
+PASS old password rejected and new password accepted
+PASS account deletion requires password and invalidates sessions
+16/16 account API integration assertions passed
+PASS test_account_api_hardening.js
+
+=== test_account_server_bind_guard.js ===
+PASS prototype account server refuses public/LAN bind
+PASS test_account_server_bind_guard.js
+
+=== test_account_sync_package.js ===
+PASS account page is present
+PASS register form is present
+PASS login form is present
+PASS explicit upload and download controls are present
+PASS sync requires confirmation before overwrite
+PASS password hashing uses scrypt
+PASS session token is stored hashed
+PASS session expiry is enforced
+PASS request body limits exist
+PASS account API is not advertised as production-ready
+PASS dedicated start script launches account server
+PASS README warns demo data only
+12/12 account/sync package checks passed
+PASS test_account_sync_package.js
+
+=== test_auth_rate_limit.js ===
+PASS auth rate limiter groups route attempts and ignores query-string variations
+PASS test_auth_rate_limit.js
+
+=== test_backup_restore.js ===
+PASS: accepts a valid empty backup
+PASS: rejects null and array roots
+PASS: rejects missing collections/profile/preferences
+PASS: rejects invalid calendar dates
+PASS: rejects malformed date strings
+PASS: rejects empty or oversized reminder titles
+PASS: rejects invalid reminder completion flag
+PASS: rejects oversized reminder notes and invalid IDs
+PASS: rejects oversized report text
+PASS: rejects report IDs that could break inline handlers
+PASS: rejects unsupported report fields and non-string values
+PASS: rejects unsafe reminder IDs
+PASS: rejects blank profile names and blank preference selections
+PASS: rejects unsupported profile and preference fields
+PASS: rejects more than 5,000 records
+
+Backup restore tests: 15/15 passed
+PASS test_backup_restore.js
+
+=== test_completion_matrix.js ===
+PASS completion matrix: all 30 pinned sections preserved and assigned a status
+PASS completion matrix: incomplete production gates explicitly disclosed
+PASS test_completion_matrix.js
+
+=== test_csv_export_safety.js ===
+PASS: quotes ordinary text
+PASS: escapes embedded quotes
+PASS: neutralizes equals formula
+PASS: neutralizes plus formula
+PASS: neutralizes minus formula
+PASS: neutralizes at-sign formula
+PASS: neutralizes leading whitespace before formula
+PASS: handles null as empty cell
+CSV export safety tests: 8/8 passed
+PASS test_csv_export_safety.js
+
+=== test_deep_workbench.js ===
+Deep Workbench QA: 20/20 static checks passed
+PASS: module present: Universal Report Intelligence
+PASS: module present: Medical Terminology and Coding
+PASS: module present: Specific Food and Nutrient Reference
+PASS: module present: Explainable Nutrition Reasoning
+PASS: module present: Patient Safety Engine
+PASS: module present: Multilingual Patient Explainer
+PASS: module present: Patient-controlled Food-source Alternatives
+PASS: module present: Verification and Test Centre
+PASS: medical-use limitation present
+PASS: safety language present
+PASS: source/verification language present
+PASS: local persistence explicitly identifiable
+PASS: HTML document has closing tags
+PASS: built-in missing-test self-check matches validator wording — Protects the in-app test from stale error-message expectations
+PASS: inline JavaScript syntax
+PASS: terminology catalogue parses
+PASS: terminology catalogue has concepts — 66 entries
+PASS: server uses bounded fetch timeout
+PASS: provider secrets read from environment
+PASS: starter catalogue warns official codes require verification
+LIMIT: This is a static/logic-surface check, not a browser end-to-end test, OCR accuracy benchmark, security audit, or clinical validation.
+PASS test_deep_workbench.js
+
+=== test_export_metadata.js ===
+PASS: workbench export reports current development version
+PASS: stale 2.8 export version is absent
+PASS: export warns that this is educational and not diagnosis
+PASS: export timestamp is generated at export time
+PASS: export includes report and safety context
+Export metadata checks: 5/5 passed
+PASS test_export_metadata.js
+
+=== test_final_guidance.js ===
+PASS final food-choice and activity-class API
+PASS 10 food categories and item-to-nutrient association labels
+PASS safe activity fallback and daily rotating food-source suggestion
+PASS integrated into existing nutrition app
+PASS choice history export/delete and daily food reminder controls
+PASS test_final_guidance.js
+
+=== test_final_integration_scope.js ===
+PASS: expanded report routing, food category coverage, activity safety class and starter portion calculations.
+PASS test_final_integration_scope.js
+
+=== test_food_source_only_policy.js ===
+PASS: active food-source suggestions avoid recipes/dishes and localize individual food items.
+PASS test_food_source_only_policy.js
+
+=== test_fooddata_central.js ===
+PASS USDA FoodData Central lookup UI
+PASS same-origin server-side proxy and private key configuration
+PASS bounded queries, local rate limit, and data-source warning
+PASS food-source guidance avoids recipe/preparation instructions
+PASS test_fooddata_central.js
+
+=== test_fooddata_central_mapper.js ===
+PASS FoodData Central nutrient-name mapping
+PASS unit conversion and unknown-unit safety
+PASS missing nutrient values remain absent, not fabricated
+PASS test_fooddata_central_mapper.js
+
+=== test_local_server_api.js ===
+PASS local server startup and app shell
+PASS online food search query validation without external network
+PASS unknown API and missing file handling
+PASS test_local_server_api.js
+
+=== test_local_server_files.js ===
+PASS · Local server binds to loopback only
+PASS · Local server serves manifest MIME type
+PASS · Local server guards path traversal
+PASS · Launcher prefers Node so the online food-search API is available
+PASS · Online food-search API is served by a same-origin proxy
+PASS · Local server warns it is not internet hosting
+PASS · Food-search cache has expiry and a fixed maximum size
+7/7 local server checks passed
+PASS test_local_server_files.js
+
+=== test_multi_measurement_picker.js ===
+PASS picker container exists
+PASS accessible select exists
+PASS use-selected button exists
+PASS detected results are populated from parser output
+PASS selection bounds are checked
+PASS selected result fills only its own measurement fields
+PASS reference range is not guessed for selected result
+PASS save confirmation is reset for each selected result
+PASS manual source verification is explicitly requested
+9/9 multi-measurement picker checks passed
+PASS test_multi_measurement_picker.js
+
+=== test_multi_measurement_save.js ===
+PASS multi-measurement queue controls exist
+PASS adding a measurement requires test, value, and unit
+PASS adding a measurement requires user confirmation
+PASS exact duplicate queued measurements are blocked
+PASS multiple measurements persist together on one report
+PASS each measurement retains separate data-quality status
+PASS timeline displays all saved measurements
+PASS comparison flattens measurements across reports
+PASS CSV export includes the full measurement array
+PASS clinical clearance remains false
+Multi-measurement save workflow: 10/10 checks passed
+PASS test_multi_measurement_save.js
+
+=== test_multi_result_guard.js ===
+PASS collects all recognized matches
+PASS deduplicates repeated identical results
+PASS autofills only when exactly one result is found
+PASS shows explicit manual selection when multiple results exist
+Multi-result guard: 4/4 passed
+PASS test_multi_result_guard.js
+
+=== test_nutrition_calculator_v326.js ===
+PASS: 10 integration checks; calculator engine syntax valid.
+PASS test_nutrition_calculator_v326.js
+
+=== test_nutrition_core.js ===
+PASS valid report fields accepted as data-complete
+PASS missing test flagged
+PASS ambiguous value flagged
+PASS unit-bearing reference range accepted for manual review
+PASS unparseable range flagged
+PASS empty original source flagged
+PASS future date flagged
+PASS impossible calendar date rejected
+PASS non-ISO date rejected
+PASS risk flags block meal planning
+PASS no flags does not grant clinical clearance
+PASS food record without provenance rejected
+PASS food nutrient without source rejected
+PASS invalid food source URL rejected
+PASS unknown food review status rejected
+PASS OCR decimal comma normalized when unambiguous
+PASS OCR grouped thousands token is held for manual review
+PASS OCR mixed decimal separators held for manual review
+PASS OCR comparator is preserved during normalization
+
+Nutrition core: 19 passed, 0 failed
+PASS test_nutrition_core.js
+
+=== test_nutrition_ui_safety_gate.js ===
+PASS diabetes included in high-risk gate
+PASS under-18 age included in high-risk gate
+PASS invalid age entry triggers review
+PASS allergy notes trigger review
+PASS kidney/liver topic triggers review
+PASS review gate returns before rendering food cards
+PASS review notice says tailored food list is not generated
+Nutrition UI safety-gate regression: 7/7 passed
+PASS meal planner blocks selected safety flags
+PASS meal planner blocks free-text allergy/restriction notes
+PASS meal planner blocks free-text preferences/exclusions instead of guessing
+PASS safety screen records allergy notes as review-needed
+Additional planner safety regressions: 4/4 passed
+PASS test_nutrition_ui_safety_gate.js
+
+=== test_ocr_analyte_pairing.js ===
+PASS analyte parser exists
+PASS HbA1c label/value whitespace is horizontal-only
+PASS hemoglobin label/value whitespace is horizontal-only
+PASS glucose label/value whitespace is horizontal-only
+PASS vitamin D label/value whitespace is horizontal-only
+PASS creatinine label/value whitespace is horizontal-only
+PASS analyte regexes do not contain newline-capable whitespace wildcard
+PASS manual verification notice remains in picker flow
+OCR analyte pairing safety: 8/8 passed
+PASS test_ocr_analyte_pairing.js
+
+=== test_ocr_date_safety.js ===
+PASS OCR date autofill treats the prefilled current date as untouched
+PASS ambiguous day/month dates require manual review
+PASS invalid calendar dates require manual review
+PASS date candidates are validated by ISO round-trip
+PASS autofill never claims date verification
+OCR date safety checks: 5 passed, 0 failed
+PASS test_ocr_date_safety.js
+
+=== test_ocr_numeric_ambiguity.js ===
+PASS parser delegates numeric normalization to shared core
+PASS ambiguous numeric values are not added to detected results
+PASS UI explains that ambiguous numeric formatting needs manual review
+PASS 4,5 is normalized as decimal 4.5
+PASS 1,234 is treated as ambiguous, not 1.234
+PASS 1,234.5 is held as mixed separators
+PASS comparison operators survive normalization
+PASS internal digit whitespace is not silently removed
+PASS OCR spacing ambiguity requests manual review
+OCR numeric ambiguity checks: 9/9 passed
+PASS test_ocr_numeric_ambiguity.js
+
+=== test_production_preflight.js ===
+Production preflight tests: 23/23 passed
+PASS test_production_preflight.js
+
+=== test_production_server_contract.js ===
+PASS production API contract: PostgreSQL, migrations, OTP, distributed throttling, password/session hashing, payload validation and UI verification flow
+PASS test_production_server_contract.js
+
+=== test_pwa_package.js ===
+PASS · Manifest linked from app
+PASS · PWA manifest has standalone display
+PASS · App shell has a valid start URL
+PASS · Install action is available when browser prompts
+PASS · Service worker registration is guarded by browser support
+PASS · Service worker excludes API and JSON from shell caching
+PASS · Service worker caches required local app shell assets
+PASS · Icon exists and is referenced
+PASS · No cloud account sync is falsely declared
+9/9 PWA package checks passed
+PASS test_pwa_package.js
+
+=== test_quick_food_swap.js ===
+PASS quick food swap card
+PASS six practical needs
+PASS four food patterns
+PASS three languages
+PASS allergy/restriction pauses recommendations
+PASS no calorie promise in feature
+PASS click handler wired
+PASS test_quick_food_swap.js
+
+=== test_quick_food_swap_localization.js ===
+PASS Marathi food localization catalogue
+PASS Hindi food localization catalogue
+PASS Localized output selected by language
+PASS Output remains escaped
+PASS Allergy/restriction hold preserved
+PASS English fallback retained
+PASS test_quick_food_swap_localization.js
+
+=== test_report_file_safety.js ===
+PASS 15 MiB report upload limit is declared
+PASS oversize helper checks actual file size
+PASS file picker warns when selected file exceeds limit
+PASS image OCR blocks oversize files
+PASS PDF text extraction blocks oversize files
+PASS scanned PDF OCR blocks oversize files
+PASS selectable PDF extraction has page cap
+PASS scanned PDF OCR remains capped at 20 pages
+
+Report file safety: 8 passed, 0 failed
+PASS test_report_file_safety.js
+
+=== test_report_save_validation.js ===
+PASS complete report gets data-complete but still requires human review
+PASS missing measurement fields are stored as incomplete review
+PASS ambiguous values are stored as incomplete review
+PASS future dates are flagged for review
+PASS empty source transcription is flagged
+PASS save handler invokes report data-quality assessment
+PASS save handler stores issues and does not grant clinical clearance
+PASS timeline exposes saved data-quality status
+PASS CSV export includes quality status and issues
+PASS user confirmation is recorded but not treated as clinical clearance
+
+Report save validation: 10 passed, 0 failed
+PASS test_report_save_validation.js
+
+=== test_report_wellness_integration.js ===
+PASS report-aware wellness API
+PASS common report-family profiles
+PASS high-risk safety gates
+PASS report result integration
+PASS food-only guidance and activity/yoga
+PASS test_report_wellness_integration.js
+
+=== test_terminology.js ===
+PASS: catalogue JSON and structure
+PASS: server JavaScript syntax
+PASS: local terminology status API
+PASS: offline Ferritin search
+PASS: empty/unknown search validation
+PASS: app homepage
+PASS: path traversal basic check
+NOTE: external provider credentials, real API calls, browser OCR and clinical rules were NOT tested.
+PASS test_terminology.js
+
+=== test_terminology_runtime.js ===
+PASS status endpoint returns JSON
+PASS local search returns marked starter concepts
+PASS oversized query rejected
+PASS unknown system rejected
+PASS non-GET method rejected
+PASS path traversal rejected
+PASS malformed percent-encoding returns 400 without server crash
+PASS test_terminology_runtime.js
+
+=== test_ui_stored_id_safety.js ===
+PASS: report delete uses escaped data attribute
+PASS: reminder toggle uses escaped data attribute
+PASS: reminder delete uses escaped data attribute
+PASS: report renderer does not interpolate ID into inline handler
+PASS: reminder renderer does not interpolate ID into inline handlers
+PASS: delegated click handler exists
+Stored-ID UI safety checks: 6/6 passed
+PASS test_ui_stored_id_safety.js
+
+=== test_universal_report_nutrition.js ===
+PASS: 29 routing examples; 41 report-family profiles; unknown-report safe fallback; nutrition/safety profile structure.
+PASS test_universal_report_nutrition.js
+
+=== test_wellness_plan.js ===
+PASS daily plan navigation
+PASS short patient onboarding
+PASS goal choices
+PASS food preference choices
+PASS activity safety choice
+PASS health risk guardrail
+PASS multiple choice reminder categories
+PASS daily check-in storage
+PASS notification permission flow
+PASS notification delivery limitation disclosed
+PASS profile extended fields
+PASS snooze and skip actions
+PASS reset today action
+PASS no diagnosis claim
+14/14 wellness integration checks passed
+PASS test_wellness_plan.js
+
+RESULT: 38/38 scripts passed; 0 failed.

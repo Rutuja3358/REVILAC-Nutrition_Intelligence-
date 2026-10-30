@@ -1,0 +1,10 @@
+REVILAC Nutrition Intelligence v3.38 — package re-verification
+Date: 2026-10-22
+
+npm test: PASS, 40/40 test scripts
+npm run test:syntax: PASS, 52/52 root JavaScript files
+python test_package.py: PASS, structural checks; 6 inline JavaScript blocks parsed
+Synthetic local Tesseract OCR smoke test: PASS (Hemoglobin: 12.4 g/dL)
+npm run preflight: BLOCKED as expected; 7/22 checks pass, 15 blockers remain
+
+The preflight is deliberately strict. The package is not approved for identifiable real-patient data. See ZERO_COST_FINAL_RELEASE_DECISION.md.

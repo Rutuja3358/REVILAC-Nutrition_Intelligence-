@@ -1,0 +1,18 @@
+REVILAC Nutrition Intelligence v3.38.7
+Actual local verification run: 2026-10-22
+Environment: Node.js v22.16.0
+
+RESULTS
+- npm test: PASS, 45/45 test scripts, 0 failed.
+- npm run test:syntax: PASS, 58/58 root JavaScript files.
+- npm run build:pages: PASS, allowlisted static PWA build created in dist/ (11 files).
+- python3 test_http_smoke.py: PASS, 6/6 HTTP smoke checks.
+- npm run preflight: NOT APPROVED for production. 7/22 checks passed; 15 blockers remain.
+
+IMPORTANT LIMITS
+- Browser end-to-end workflow and real Android/laptop/tablet device testing were not completed in this run.
+- OCR accuracy benchmark against ground-truth reports was not completed.
+- Independent security, privacy/legal, clinical/nutrition, accessibility, nutrition data provenance/licensing, live database/SMTP, and backup/restore evidence are still missing.
+- Use synthetic/demo reports only. Do not use identifiable patient data or rely on output for diagnosis/treatment.
+
+Interpretation: automated/static checks and local HTTP smoke checks pass; this is not proof of production readiness or full cross-device functionality.

@@ -1,0 +1,19 @@
+PASS: HTML document start
+PASS: HTML closing tags
+PASS: main navigation
+PASS: report form
+PASS: local data persistence
+PASS: JSON backup restore
+PASS: CSV export
+PASS: follow-up reminders
+PASS: nutrition guidance
+PASS: OCR/PDF controls
+PASS: JavaScript syntax block 1
+PASS: JavaScript syntax block 2
+PASS: JavaScript syntax block 3
+PASS: JavaScript syntax block 4
+PASS: JavaScript syntax block 5
+PASS: JavaScript syntax block 6
+
+RESULT: PASS — structural checks passed. This is not a full browser or clinical test.
+v3.32 package structural checks passed; concepts: 66

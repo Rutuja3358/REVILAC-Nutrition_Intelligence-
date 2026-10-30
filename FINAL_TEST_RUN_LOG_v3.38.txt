@@ -1,0 +1,11 @@
+REVILAC Nutrition Intelligence v3.38.1 — final local test evidence
+Generated: 2026-10-22
+
+RESULT: PASS — npm test: 41/41 JavaScript test scripts passed, 0 failed.
+RESULT: PASS — npm run test:syntax: 53/53 root JavaScript files passed.
+RESULT: PASS — python test_package.py structural checks passed; all 6 inline JavaScript blocks parsed.
+RESULT: PASS — synthetic local image OCR smoke test returned the expected synthetic hemoglobin line using /api/local-ocr and installed Tesseract.
+RESULT: PASS — synthetic text-based PDF was extracted locally through /api/local-pdf-ocr using Poppler pdftotext; synthetic Hemoglobin and Glucose text recovered.
+RESULT: PASS — synthetic scanned PDF was rendered locally using Poppler pdftoppm and OCRed with Tesseract; synthetic Hemoglobin and Glucose text recovered.
+
+Limitations: These are code/structure and synthetic OCR checks only. No representative real medical reports, real browser/device end-to-end test, clinical accuracy, privacy/security certification, or production deployment was validated. LocalStorage is unencrypted. Local image OCR requires Tesseract; local PDF OCR requires Poppler utilities and Tesseract, with English OCR data. Use synthetic/de-identified data only until release blockers are independently cleared.

@@ -1,0 +1,5 @@
+
+> revilac-nutrition-intelligence@3.36.0 test:syntax
+> node scripts/check-syntax.js
+
+Syntax check: 50/50 root JavaScript files passed.

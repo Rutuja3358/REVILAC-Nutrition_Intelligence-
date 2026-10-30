@@ -1,0 +1,22 @@
+{
+  "name": "revilac-nutrition-intelligence",
+  "version": "3.38.8",
+  "private": true,
+  "description": "REVILAC Nutrition Intelligence with emerald workspace navigation, encrypted local vault, offline-capable PWA shell and zero-cost static deployment workflow",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node scripts/run-tests.js",
+    "test:syntax": "node scripts/check-syntax.js",
+    "preflight": "node production_preflight.js",
+    "start": "node production-server.js",
+    "start:prototype": "node account-server.js",
+    "test:production-contract": "node test_production_server_contract.js",
+    "build:pages": "node scripts/build-pages.js"
+  },
+  "dependencies": {
+    "nodemailer": "6.10.1",
+    "pg": "8.16.3"
+  }
+}

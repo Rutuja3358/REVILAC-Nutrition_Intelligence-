@@ -1,0 +1,149 @@
+
+> revilac-nutrition-intelligence@3.38.7 preflight
+> node production_preflight.js
+
+{
+  "product": "REVILAC Nutrition Intelligence",
+  "mode": "read-only evidence-based preflight",
+  "productionReady": false,
+  "summary": {
+    "total": 22,
+    "passed": 7,
+    "blockers": 15,
+    "warnings": 0
+  },
+  "checks": [
+    {
+      "id": "node",
+      "label": "Supported Node.js runtime",
+      "status": "PASS",
+      "detail": "Node.js 20+ required; detected major 22"
+    },
+    {
+      "id": "file_index.html",
+      "label": "Required file: index.html",
+      "status": "PASS",
+      "detail": "Present"
+    },
+    {
+      "id": "file_account-server.js",
+      "label": "Required file: account-server.js",
+      "status": "PASS",
+      "detail": "Present"
+    },
+    {
+      "id": "file_local-server.js",
+      "label": "Required file: local-server.js",
+      "status": "PASS",
+      "detail": "Present"
+    },
+    {
+      "id": "file_service-worker.js",
+      "label": "Required file: service-worker.js",
+      "status": "PASS",
+      "detail": "Present"
+    },
+    {
+      "id": "file_manifest.webmanifest",
+      "label": "Required file: manifest.webmanifest",
+      "status": "PASS",
+      "detail": "Present"
+    },
+    {
+      "id": "file_nutrition-core.js",
+      "label": "Required file: nutrition-core.js",
+      "status": "PASS",
+      "detail": "Present"
+    },
+    {
+      "id": "database",
+      "label": "PostgreSQL production API and migrations configured",
+      "status": "BLOCK",
+      "detail": "Production PostgreSQL adapter/migration exist; live connection and migration evidence are still required."
+    },
+    {
+      "id": "https",
+      "label": "Verified HTTPS termination",
+      "status": "BLOCK",
+      "detail": "Requires deployment evidence in release-evidence/https-deployment.json; environment flag alone is insufficient."
+    },
+    {
+      "id": "otp",
+      "label": "Email ownership verification provider configured",
+      "status": "BLOCK",
+      "detail": "Production API uses email OTP; requires a configured SMTP provider and reviewed delivery/recovery evidence."
+    },
+    {
+      "id": "rate_limit",
+      "label": "Database-backed shared rate limiting",
+      "status": "BLOCK",
+      "detail": "Production API implements a PostgreSQL-backed rate-limit table; live multi-instance validation evidence is still required."
+    },
+    {
+      "id": "session",
+      "label": "Production session secret configured",
+      "status": "BLOCK",
+      "detail": "Requires a high-entropy secret from a managed secret store; do not reuse a password."
+    },
+    {
+      "id": "database_review",
+      "label": "Live database connection and migration test",
+      "status": "BLOCK",
+      "detail": "Missing release-evidence/database-integration.json; environment flags are not accepted as proof."
+    },
+    {
+      "id": "security_review",
+      "label": "Independent security review",
+      "status": "BLOCK",
+      "detail": "Missing release-evidence/security-review.json; environment flags are not accepted as proof."
+    },
+    {
+      "id": "privacy_review",
+      "label": "Privacy/legal review",
+      "status": "BLOCK",
+      "detail": "Missing release-evidence/privacy-review.json; environment flags are not accepted as proof."
+    },
+    {
+      "id": "clinical_review",
+      "label": "Qualified clinical/nutrition validation",
+      "status": "BLOCK",
+      "detail": "Missing release-evidence/clinical-review.json; environment flags are not accepted as proof."
+    },
+    {
+      "id": "e2e",
+      "label": "Real-device end-to-end tests",
+      "status": "BLOCK",
+      "detail": "Missing release-evidence/device-e2e.json; environment flags are not accepted as proof."
+    },
+    {
+      "id": "backup",
+      "label": "Independent backup and successful restore drill",
+      "status": "BLOCK",
+      "detail": "Missing release-evidence/backup-restore.json; environment flags are not accepted as proof."
+    },
+    {
+      "id": "monitoring",
+      "label": "Operational monitoring and incident response",
+      "status": "BLOCK",
+      "detail": "Missing release-evidence/monitoring.json; environment flags are not accepted as proof."
+    },
+    {
+      "id": "nutrition_data",
+      "label": "Nutrition data provenance/licensing review",
+      "status": "BLOCK",
+      "detail": "Missing release-evidence/nutrition-data.json; environment flags are not accepted as proof."
+    },
+    {
+      "id": "ocr_benchmark",
+      "label": "Ground-truth OCR benchmark",
+      "status": "BLOCK",
+      "detail": "Missing release-evidence/ocr-benchmark.json; environment flags are not accepted as proof."
+    },
+    {
+      "id": "accessibility",
+      "label": "Accessibility and language usability review",
+      "status": "BLOCK",
+      "detail": "Missing release-evidence/accessibility-review.json; environment flags are not accepted as proof."
+    }
+  ]
+}

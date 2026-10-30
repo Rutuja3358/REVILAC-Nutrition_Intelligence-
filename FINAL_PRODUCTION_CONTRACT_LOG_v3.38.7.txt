@@ -1,0 +1,6 @@
+
+> revilac-nutrition-intelligence@3.38.7 test:production-contract
+> node test_production_server_contract.js
+
+PASS production API contract: PostgreSQL, migrations, OTP, distributed throttling, password/session hashing, payload validation and UI verification flow
+PASS production defense-in-depth response headers

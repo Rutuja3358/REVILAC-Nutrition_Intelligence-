@@ -1,0 +1,433 @@
+{
+  "product": "REVILAC Nutrition Intelligence",
+  "build": "v3.33",
+  "date_utc": "2026-10-21T19:49:51.350407+00:00",
+  "automated_checks": {
+    "count": 48,
+    "passed": 48,
+    "failed": 0
+  },
+  "js_test_scripts": 37,
+  "syntax_checks": 8,
+  "production_preflight": {
+    "exit_code": 2,
+    "summary": {
+      "total": 18,
+      "passed": 7,
+      "blockers": 11,
+      "warnings": 0
+    },
+    "blockers": [
+      {
+        "id": "database",
+        "label": "Managed persistent database configured",
+        "status": "BLOCK",
+        "detail": "DATABASE_URL is not set. The current account API stores data in a local JSON file; do not expose it publicly."
+      },
+      {
+        "id": "https",
+        "label": "HTTPS termination explicitly configured",
+        "status": "BLOCK",
+        "detail": "Set only after a trusted HTTPS reverse proxy/load balancer is configured and verified."
+      },
+      {
+        "id": "otp",
+        "label": "Email/mobile ownership verification provider configured",
+        "status": "BLOCK",
+        "detail": "No verified email/SMS provider configured; account ownership and recovery are not production-ready."
+      },
+      {
+        "id": "rate_limit",
+        "label": "Shared rate limiter configured",
+        "status": "BLOCK",
+        "detail": "In-memory per-process throttling is not sufficient for multi-instance production."
+      },
+      {
+        "id": "session",
+        "label": "Production session secret configured",
+        "status": "BLOCK",
+        "detail": "A >=32-character secret is not configured. Do not reuse a password."
+      },
+      {
+        "id": "security_review",
+        "label": "Independent security review recorded",
+        "status": "BLOCK",
+        "detail": "Requires documented review and remediation of findings; an environment flag alone is not evidence."
+      },
+      {
+        "id": "privacy_review",
+        "label": "Privacy/legal review recorded",
+        "status": "BLOCK",
+        "detail": "Requires actual review of consent, retention, deletion, breach response, and applicable law."
+      },
+      {
+        "id": "clinical_review",
+        "label": "Clinical/nutrition validation recorded",
+        "status": "BLOCK",
+        "detail": "Requires qualified expert sign-off and validated test evidence; not just a configuration toggle."
+      },
+      {
+        "id": "e2e",
+        "label": "Real-device end-to-end test evidence recorded",
+        "status": "BLOCK",
+        "detail": "Requires tested Android/iOS/desktop journeys and notification behavior."
+      },
+      {
+        "id": "backup",
+        "label": "Backup/restore drill evidence recorded",
+        "status": "BLOCK",
+        "detail": "Requires a successful restore drill from an independently stored backup."
+      },
+      {
+        "id": "monitoring",
+        "label": "Monitoring and incident response configured",
+        "status": "BLOCK",
+        "detail": "Requires health monitoring, logs, alerts, and an incident response owner."
+      }
+    ]
+  },
+  "browser_e2e": "NOT VERIFIED in this runtime",
+  "live_external_api": "NOT VERIFIED in this run",
+  "real_world_ocr_accuracy": "NOT VERIFIED",
+  "clinical_validation": "NOT DONE; requires qualified professionals",
+  "independent_security_review": "NOT DONE",
+  "real_device_tests": "NOT DONE",
+  "results": [
+    {
+      "label": "test_account_api_hardening.js",
+      "command": "node test_account_api_hardening.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS local account API register/token flow\nPASS validated sync payload accepted\nPASS unsupported fields and oversized field rejected\nPASS sync data round-trip including nutritionContext\nPASS password change rejects wrong current password and rotates credential\nPASS old password rejected and new password accepted\nPASS account deletion requires password and invalidates sessions\n16/16 account API integration assertions passed\n"
+    },
+    {
+      "label": "test_account_server_bind_guard.js",
+      "command": "node test_account_server_bind_guard.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS prototype account server refuses public/LAN bind\n"
+    },
+    {
+      "label": "test_account_sync_package.js",
+      "command": "node test_account_sync_package.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS account page is present\nPASS register form is present\nPASS login form is present\nPASS explicit upload and download controls are present\nPASS sync requires confirmation before overwrite\nPASS password hashing uses scrypt\nPASS session token is stored hashed\nPASS session expiry is enforced\nPASS request body limits exist\nPASS account API is not advertised as production-ready\nPASS dedicated start script launches account server\nPASS README warns demo data only\n12/12 account/sync package checks passed\n"
+    },
+    {
+      "label": "test_auth_rate_limit.js",
+      "command": "node test_auth_rate_limit.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS auth rate limiter groups route attempts and ignores query-string variations\n"
+    },
+    {
+      "label": "test_backup_restore.js",
+      "command": "node test_backup_restore.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS: accepts a valid empty backup\nPASS: rejects null and array roots\nPASS: rejects missing collections/profile/preferences\nPASS: rejects invalid calendar dates\nPASS: rejects malformed date strings\nPASS: rejects empty or oversized reminder titles\nPASS: rejects invalid reminder completion flag\nPASS: rejects oversized reminder notes and invalid IDs\nPASS: rejects oversized report text\nPASS: rejects report IDs that could break inline handlers\nPASS: rejects unsupported report fields and non-string values\nPASS: rejects unsafe reminder IDs\nPASS: rejects blank profile names and blank preference selections\nPASS: rejects unsupported profile and preference fields\nPASS: rejects more than 5,000 records\n\nBackup restore tests: 15/15 passed\n"
+    },
+    {
+      "label": "test_completion_matrix.js",
+      "command": "node test_completion_matrix.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS completion matrix: all 30 pinned sections preserved and assigned a status\nPASS completion matrix: incomplete production gates explicitly disclosed\n"
+    },
+    {
+      "label": "test_csv_export_safety.js",
+      "command": "node test_csv_export_safety.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS: quotes ordinary text\nPASS: escapes embedded quotes\nPASS: neutralizes equals formula\nPASS: neutralizes plus formula\nPASS: neutralizes minus formula\nPASS: neutralizes at-sign formula\nPASS: neutralizes leading whitespace before formula\nPASS: handles null as empty cell\nCSV export safety tests: 8/8 passed\n"
+    },
+    {
+      "label": "test_deep_workbench.js",
+      "command": "node test_deep_workbench.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "Deep Workbench QA: 20/20 static checks passed\nPASS: module present: Universal Report Intelligence\nPASS: module present: Medical Terminology and Coding\nPASS: module present: Specific Food and Nutrient Reference\nPASS: module present: Explainable Nutrition Reasoning\nPASS: module present: Patient Safety Engine\nPASS: module present: Multilingual Patient Explainer\nPASS: module present: Patient-controlled Food-source Alternatives\nPASS: module present: Verification and Test Centre\nPASS: medical-use limitation present\nPASS: safety language present\nPASS: source/verification language present\nPASS: local persistence explicitly identifiable\nPASS: HTML document has closing tags\nPASS: built-in missing-test self-check matches validator wording \u2014 Protects the in-app test from stale error-message expectations\nPASS: inline JavaScript syntax\nPASS: terminology catalogue parses\nPASS: terminology catalogue has concepts \u2014 66 entries\nPASS: server uses bounded fetch timeout\nPASS: provider secrets read from environment\nPASS: starter catalogue warns official codes require verification\nLIMIT: This is a static/logic-surface check, not a browser end-to-end test, OCR accuracy benchmark, security audit, or clinical validation.\n"
+    },
+    {
+      "label": "test_export_metadata.js",
+      "command": "node test_export_metadata.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS: workbench export reports current development version\nPASS: stale 2.8 export version is absent\nPASS: export warns that this is educational and not diagnosis\nPASS: export timestamp is generated at export time\nPASS: export includes report and safety context\nExport metadata checks: 5/5 passed\n"
+    },
+    {
+      "label": "test_final_guidance.js",
+      "command": "node test_final_guidance.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS final food-choice and activity-class API\nPASS 10 food categories and item-to-nutrient association labels\nPASS safe activity fallback and daily rotating food-source suggestion\nPASS integrated into existing nutrition app\nPASS choice history export/delete and daily food reminder controls\n"
+    },
+    {
+      "label": "test_final_integration_scope.js",
+      "command": "node test_final_integration_scope.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS: expanded report routing, food category coverage, activity safety class and starter portion calculations.\n"
+    },
+    {
+      "label": "test_food_source_only_policy.js",
+      "command": "node test_food_source_only_policy.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS: active food-source suggestions avoid recipes/dishes and localize individual food items.\n"
+    },
+    {
+      "label": "test_fooddata_central.js",
+      "command": "node test_fooddata_central.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS USDA FoodData Central lookup UI\nPASS same-origin server-side proxy and private key configuration\nPASS bounded queries, local rate limit, and data-source warning\nPASS food-source guidance avoids recipe/preparation instructions\n"
+    },
+    {
+      "label": "test_fooddata_central_mapper.js",
+      "command": "node test_fooddata_central_mapper.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS FoodData Central nutrient-name mapping\nPASS unit conversion and unknown-unit safety\nPASS missing nutrient values remain absent, not fabricated\n"
+    },
+    {
+      "label": "test_local_server_api.js",
+      "command": "node test_local_server_api.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS local server startup and app shell\nPASS online food search query validation without external network\nPASS unknown API and missing file handling\n"
+    },
+    {
+      "label": "test_local_server_files.js",
+      "command": "node test_local_server_files.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS \u00b7 Local server binds to loopback only\nPASS \u00b7 Local server serves manifest MIME type\nPASS \u00b7 Local server guards path traversal\nPASS \u00b7 Launcher prefers Node so the online food-search API is available\nPASS \u00b7 Online food-search API is served by a same-origin proxy\nPASS \u00b7 Local server warns it is not internet hosting\n6/6 local server checks passed\n"
+    },
+    {
+      "label": "test_multi_measurement_picker.js",
+      "command": "node test_multi_measurement_picker.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS picker container exists\nPASS accessible select exists\nPASS use-selected button exists\nPASS detected results are populated from parser output\nPASS selection bounds are checked\nPASS selected result fills only its own measurement fields\nPASS reference range is not guessed for selected result\nPASS save confirmation is reset for each selected result\nPASS manual source verification is explicitly requested\n9/9 multi-measurement picker checks passed\n"
+    },
+    {
+      "label": "test_multi_measurement_save.js",
+      "command": "node test_multi_measurement_save.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS multi-measurement queue controls exist\nPASS adding a measurement requires test, value, and unit\nPASS adding a measurement requires user confirmation\nPASS exact duplicate queued measurements are blocked\nPASS multiple measurements persist together on one report\nPASS each measurement retains separate data-quality status\nPASS timeline displays all saved measurements\nPASS comparison flattens measurements across reports\nPASS CSV export includes the full measurement array\nPASS clinical clearance remains false\nMulti-measurement save workflow: 10/10 checks passed\n"
+    },
+    {
+      "label": "test_multi_result_guard.js",
+      "command": "node test_multi_result_guard.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS collects all recognized matches\nPASS deduplicates repeated identical results\nPASS autofills only when exactly one result is found\nPASS shows explicit manual selection when multiple results exist\nMulti-result guard: 4/4 passed\n"
+    },
+    {
+      "label": "test_nutrition_calculator_v326.js",
+      "command": "node test_nutrition_calculator_v326.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS: 10 integration checks; calculator engine syntax valid.\n"
+    },
+    {
+      "label": "test_nutrition_core.js",
+      "command": "node test_nutrition_core.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS valid report fields accepted as data-complete\nPASS missing test flagged\nPASS ambiguous value flagged\nPASS unit-bearing reference range accepted for manual review\nPASS unparseable range flagged\nPASS empty original source flagged\nPASS future date flagged\nPASS impossible calendar date rejected\nPASS non-ISO date rejected\nPASS risk flags block meal planning\nPASS no flags does not grant clinical clearance\nPASS food record without provenance rejected\nPASS food nutrient without source rejected\nPASS invalid food source URL rejected\nPASS unknown food review status rejected\nPASS OCR decimal comma normalized when unambiguous\nPASS OCR grouped thousands token is held for manual review\nPASS OCR mixed decimal separators held for manual review\nPASS OCR comparator is preserved during normalization\n\nNutrition core: 19 passed, 0 failed\n"
+    },
+    {
+      "label": "test_nutrition_ui_safety_gate.js",
+      "command": "node test_nutrition_ui_safety_gate.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS diabetes included in high-risk gate\nPASS under-18 age included in high-risk gate\nPASS invalid age entry triggers review\nPASS allergy notes trigger review\nPASS kidney/liver topic triggers review\nPASS review gate returns before rendering food cards\nPASS review notice says tailored food list is not generated\nNutrition UI safety-gate regression: 7/7 passed\nPASS meal planner blocks selected safety flags\nPASS meal planner blocks free-text allergy/restriction notes\nPASS meal planner blocks free-text preferences/exclusions instead of guessing\nPASS safety screen records allergy notes as review-needed\nAdditional planner safety regressions: 4/4 passed\n"
+    },
+    {
+      "label": "test_ocr_analyte_pairing.js",
+      "command": "node test_ocr_analyte_pairing.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS analyte parser exists\nPASS HbA1c label/value whitespace is horizontal-only\nPASS hemoglobin label/value whitespace is horizontal-only\nPASS glucose label/value whitespace is horizontal-only\nPASS vitamin D label/value whitespace is horizontal-only\nPASS creatinine label/value whitespace is horizontal-only\nPASS analyte regexes do not contain newline-capable whitespace wildcard\nPASS manual verification notice remains in picker flow\nOCR analyte pairing safety: 8/8 passed\n"
+    },
+    {
+      "label": "test_ocr_date_safety.js",
+      "command": "node test_ocr_date_safety.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS OCR date autofill treats the prefilled current date as untouched\nPASS ambiguous day/month dates require manual review\nPASS invalid calendar dates require manual review\nPASS date candidates are validated by ISO round-trip\nPASS autofill never claims date verification\nOCR date safety checks: 5 passed, 0 failed\n"
+    },
+    {
+      "label": "test_ocr_numeric_ambiguity.js",
+      "command": "node test_ocr_numeric_ambiguity.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS parser delegates numeric normalization to shared core\nPASS ambiguous numeric values are not added to detected results\nPASS UI explains that ambiguous numeric formatting needs manual review\nPASS 4,5 is normalized as decimal 4.5\nPASS 1,234 is treated as ambiguous, not 1.234\nPASS 1,234.5 is held as mixed separators\nPASS comparison operators survive normalization\nPASS internal digit whitespace is not silently removed\nPASS OCR spacing ambiguity requests manual review\nOCR numeric ambiguity checks: 9/9 passed\n"
+    },
+    {
+      "label": "test_production_preflight.js",
+      "command": "node test_production_preflight.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "Production preflight tests: 13/13 passed\n"
+    },
+    {
+      "label": "test_pwa_package.js",
+      "command": "node test_pwa_package.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS \u00b7 Manifest linked from app\nPASS \u00b7 PWA manifest has standalone display\nPASS \u00b7 App shell has a valid start URL\nPASS \u00b7 Install action is available when browser prompts\nPASS \u00b7 Service worker registration is guarded by browser support\nPASS \u00b7 Service worker excludes API and JSON from shell caching\nPASS \u00b7 Service worker caches required local app shell assets\nPASS \u00b7 Icon exists and is referenced\nPASS \u00b7 No cloud account sync is falsely declared\n9/9 PWA package checks passed\n"
+    },
+    {
+      "label": "test_quick_food_swap.js",
+      "command": "node test_quick_food_swap.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS quick food swap card\nPASS six practical needs\nPASS four food patterns\nPASS three languages\nPASS allergy/restriction pauses recommendations\nPASS no calorie promise in feature\nPASS click handler wired\n"
+    },
+    {
+      "label": "test_quick_food_swap_localization.js",
+      "command": "node test_quick_food_swap_localization.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS Marathi food localization catalogue\nPASS Hindi food localization catalogue\nPASS Localized output selected by language\nPASS Output remains escaped\nPASS Allergy/restriction hold preserved\nPASS English fallback retained\n"
+    },
+    {
+      "label": "test_report_file_safety.js",
+      "command": "node test_report_file_safety.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS 15 MiB report upload limit is declared\nPASS oversize helper checks actual file size\nPASS file picker warns when selected file exceeds limit\nPASS image OCR blocks oversize files\nPASS PDF text extraction blocks oversize files\nPASS scanned PDF OCR blocks oversize files\nPASS selectable PDF extraction has page cap\nPASS scanned PDF OCR remains capped at 20 pages\n\nReport file safety: 8 passed, 0 failed\n"
+    },
+    {
+      "label": "test_report_save_validation.js",
+      "command": "node test_report_save_validation.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS complete report gets data-complete but still requires human review\nPASS missing measurement fields are stored as incomplete review\nPASS ambiguous values are stored as incomplete review\nPASS future dates are flagged for review\nPASS empty source transcription is flagged\nPASS save handler invokes report data-quality assessment\nPASS save handler stores issues and does not grant clinical clearance\nPASS timeline exposes saved data-quality status\nPASS CSV export includes quality status and issues\nPASS user confirmation is recorded but not treated as clinical clearance\n\nReport save validation: 10 passed, 0 failed\n"
+    },
+    {
+      "label": "test_report_wellness_integration.js",
+      "command": "node test_report_wellness_integration.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS report-aware wellness API\nPASS common report-family profiles\nPASS high-risk safety gates\nPASS report result integration\nPASS food-only guidance and activity/yoga\n"
+    },
+    {
+      "label": "test_terminology.js",
+      "command": "node test_terminology.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS: catalogue JSON and structure\nPASS: server JavaScript syntax\nPASS: local terminology status API\nPASS: offline Ferritin search\nPASS: empty/unknown search validation\nPASS: app homepage\nPASS: path traversal basic check\nNOTE: external provider credentials, real API calls, browser OCR and clinical rules were NOT tested.\n"
+    },
+    {
+      "label": "test_terminology_runtime.js",
+      "command": "node test_terminology_runtime.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS status endpoint returns JSON\nPASS local search returns marked starter concepts\nPASS oversized query rejected\nPASS unknown system rejected\nPASS non-GET method rejected\nPASS path traversal rejected\nPASS malformed percent-encoding returns 400 without server crash\n"
+    },
+    {
+      "label": "test_ui_stored_id_safety.js",
+      "command": "node test_ui_stored_id_safety.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS: report delete uses escaped data attribute\nPASS: reminder toggle uses escaped data attribute\nPASS: reminder delete uses escaped data attribute\nPASS: report renderer does not interpolate ID into inline handler\nPASS: reminder renderer does not interpolate ID into inline handlers\nPASS: delegated click handler exists\nStored-ID UI safety checks: 6/6 passed\n"
+    },
+    {
+      "label": "test_universal_report_nutrition.js",
+      "command": "node test_universal_report_nutrition.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS: 29 routing examples; 41 report-family profiles; unknown-report safe fallback; nutrition/safety profile structure.\n"
+    },
+    {
+      "label": "test_wellness_plan.js",
+      "command": "node test_wellness_plan.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS daily plan navigation\nPASS short patient onboarding\nPASS goal choices\nPASS food preference choices\nPASS activity safety choice\nPASS health risk guardrail\nPASS multiple choice reminder categories\nPASS daily check-in storage\nPASS notification permission flow\nPASS notification delivery limitation disclosed\nPASS profile extended fields\nPASS snooze and skip actions\nPASS reset today action\nPASS no diagnosis claim\n14/14 wellness integration checks passed\n"
+    },
+    {
+      "label": "syntax:account-server.js",
+      "command": "node --check account-server.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": ""
+    },
+    {
+      "label": "syntax:local-server.js",
+      "command": "node --check local-server.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": ""
+    },
+    {
+      "label": "syntax:terminology-server.js",
+      "command": "node --check terminology-server.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": ""
+    },
+    {
+      "label": "syntax:nutrition-core.js",
+      "command": "node --check nutrition-core.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": ""
+    },
+    {
+      "label": "syntax:universal-report-nutrition.js",
+      "command": "node --check universal-report-nutrition.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": ""
+    },
+    {
+      "label": "syntax:report-wellness-integration.js",
+      "command": "node --check report-wellness-integration.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": ""
+    },
+    {
+      "label": "syntax:fooddata-central-client.js",
+      "command": "node --check fooddata-central-client.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": ""
+    },
+    {
+      "label": "syntax:revilac-final-guidance.js",
+      "command": "node --check revilac-final-guidance.js",
+      "status": "PASS",
+      "returncode": 0,
+      "output": ""
+    },
+    {
+      "label": "test_package.py",
+      "command": "python test_package.py",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS: HTML document start\nPASS: HTML closing tags\nPASS: main navigation\nPASS: report form\nPASS: local data persistence\nPASS: JSON backup restore\nPASS: CSV export\nPASS: follow-up reminders\nPASS: nutrition guidance\nPASS: OCR/PDF controls\nPASS: JavaScript syntax block 1\nPASS: JavaScript syntax block 2\nPASS: JavaScript syntax block 3\nPASS: JavaScript syntax block 4\nPASS: JavaScript syntax block 5\nPASS: JavaScript syntax block 6\n\nRESULT: PASS \u2014 structural checks passed. This is not a full browser or clinical test.\nv3.32 package structural checks passed; concepts: 66\n"
+    },
+    {
+      "label": "deep_quality_audit.py",
+      "command": "python deep_quality_audit.py",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS: HTML document shell\nPASS: Eight-pillar workbench navigation\nPASS: Report normalization \u2014 required module heading\nPASS: Terminology mapping \u2014 required module heading\nPASS: Food reference catalogue \u2014 required module heading\nPASS: Explainable reasoning \u2014 required module heading\nPASS: Safety engine \u2014 required module heading\nPASS: Multilingual explainer \u2014 required module heading\nPASS: Patient-controlled food-source alternatives \u2014 required module heading\nPASS: Verification centre \u2014 required module heading\nPASS: No duplicate static HTML IDs\nPASS: Visible prototype safety disclaimer\nPASS: No visible forbidden branding\nPASS: Local storage warning exists\nPASS: OCR limitations are disclosed\nPASS: Food-source alternatives pause on safety flags\nPASS: Control exists: p26RunTests\nPASS: Control exists: p26Export\nPASS: Control exists: p26Explain\nPASS: Control exists: p26PlanBuild\nPASS: Terminology catalogue parses\nPASS: Terminology catalogue non-empty\nPASS: Account prototype refuses public/LAN bind\nPASS: Authentication rate limit ignores query-string variations\nPASS: Local server emits anti-framing and referrer headers\nPASS: Local server limits microphone permission to same origin\nPASS: Inline JavaScript present\n\nSTATIC AUDIT: 27/27 checks passed.\nLIMITATION: static checks do not prove browser interaction, OCR quality, clinical validity, privacy/security, or live external API correctness.\n"
+    },
+    {
+      "label": "test_http_smoke.py",
+      "command": "python test_http_smoke.py",
+      "status": "PASS",
+      "returncode": 0,
+      "output": "PASS HTTP smoke: main app and security headers served\nPASS HTTP smoke: PWA manifest served and parses\nPASS HTTP smoke: nutrition mapper asset served\nPASS HTTP smoke: unknown API route returns safe 404\nPASS HTTP smoke: invalid food query rejected before external API call\nPASS HTTP smoke: missing asset returns 404\n"
+    }
+  ]
+}

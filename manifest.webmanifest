@@ -1,0 +1,33 @@
+{
+  "id": "./",
+  "name": "REVILAC Nutrition Intelligence",
+  "short_name": "REVILAC",
+  "description": "REVILAC \u2014 accessible nutrition intelligence, report tracking and daily wellness support.",
+  "lang": "en-IN",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f7f5ed",
+  "theme_color": "#075c45",
+  "icons": [
+    {
+      "src": "icons/revilac-premium-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/revilac-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/REVILAC-Nutrition-Intelligence-Logo.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

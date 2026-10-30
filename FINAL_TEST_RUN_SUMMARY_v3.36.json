@@ -1,0 +1,22 @@
+{
+  "product": "REVILAC Nutrition Intelligence",
+  "version": "3.36",
+  "automated_tests": "38/38 scripts passed",
+  "syntax": "50/50 root JavaScript files passed",
+  "package_structural_test": "passed",
+  "shell_script_syntax": "passed",
+  "production_preflight": {
+    "total": 22,
+    "passed": 7,
+    "blockers": 15,
+    "warnings": 0
+  },
+  "productionReady": false,
+  "staged_zip_tests": "rerun after archive creation; see release test logs",
+  "limitations": [
+    "Dependency installation timed out in this environment; production dependencies were not installed.",
+    "Live PostgreSQL and SMTP were not exercised.",
+    "Docker was unavailable; Compose/Caddy deployment was not executed.",
+    "Independent security, privacy, clinical, OCR benchmark, device E2E, backup restore, monitoring and accessibility reviews remain external release gates."
+  ]
+}
