@@ -1,0 +1,25 @@
+'use strict';
+const assert=require('node:assert/strict');
+const g=require('./revilac-final-guidance.js');
+assert.equal(g.version,'1.1.0');
+assert.equal(g.categories.length,10);
+for(const c of g.categories){assert.ok(c.id&&c.label&&c.items.length>0);for(const i of c.items){assert.equal(i.length,2);assert.ok(i[0]&&i[1]);}}
+assert.ok(g.nutrientSource('Carrot').nutrients.includes('Beta-carotene'));
+assert.ok(g.nutrientSource('Guava').nutrients.includes('Vitamin C'));
+assert.equal(g.nutrientSource('not-a-food'),null);
+assert.equal(Object.keys(g.activityClasses).length,5);
+assert.ok(g.activityAdvice('restricted').text.includes('restriction'));
+assert.ok(g.activityAdvice('unknown').text.includes('restriction'));
+assert.ok(g.dailyItem(new Date()).name);
+const html=require('node:fs').readFileSync('index.html','utf8');
+assert.ok(html.includes('data-vault-src="revilac-final-guidance.js"')); 
+assert.ok(html.includes('universal-report-nutrition.js'));
+assert.ok(html.includes('report-wellness-integration.js'));
+console.log('PASS final food-choice and activity-class API');
+console.log('PASS 10 food categories and item-to-nutrient association labels');
+console.log('PASS safe activity fallback and daily rotating food-source suggestion');
+console.log('PASS integrated into existing nutrition app');
+assert.ok(require('node:fs').readFileSync('revilac-final-guidance.js','utf8').includes('rvfg-export'));
+assert.ok(require('node:fs').readFileSync('revilac-final-guidance.js','utf8').includes('rvfg-clear'));
+assert.ok(require('node:fs').readFileSync('index.html','utf8').includes('value="food" checked'));
+console.log('PASS choice history export/delete and daily food reminder controls');

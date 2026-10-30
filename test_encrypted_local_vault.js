@@ -1,0 +1,4 @@
+const fs=require('node:fs');const assert=require('node:assert/strict');const p=fs.readFileSync('privacy-vault-bootstrap.js','utf8');const html=fs.readFileSync('index.html','utf8');
+for(const x of ["AES-256-GCM","PBKDF2-SHA-256","iterations:ITERATIONS","crypto.subtle.encrypt","crypto.subtle.decrypt","REVILAC_ENCRYPTED_LOCAL_VAULT_V1","data-vault-script","Lock vault"]) assert.ok(p.includes(x),`missing vault security element: ${x}`);
+assert.match(p,/600000/);assert.match(fs.readFileSync('index.html','utf8'),/type="text\/plain" data-vault-script/i);assert.ok((html.match(/data-vault-script/g)||[]).length>=8,'app scripts must be gated until unlock');assert.ok(html.includes('privacy-vault-bootstrap.js'));
+console.log('Encrypted local vault structural checks passed. Note: this is not a browser penetration test.');

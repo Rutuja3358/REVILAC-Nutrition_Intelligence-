@@ -1,0 +1,6 @@
+
+> revilac-nutrition-intelligence@3.38.7 build:pages
+> node scripts/build-pages.js
+
+Built allowlisted static PWA at dist/ (11 files).
+This artifact is local-first only; it does not provide backend accounts or cross-device cloud sync.

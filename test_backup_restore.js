@@ -1,0 +1,31 @@
+'use strict';
+const fs=require('fs');
+const vm=require('vm');
+const html=fs.readFileSync(__dirname+'/index.html','utf8');
+const start=html.indexOf('function validateBackupPayload(incoming){');
+const end=html.indexOf("$('restoreFile').addEventListener",start);
+if(start<0||end<0) throw new Error('Could not locate backup validator in index.html');
+const source=html.slice(start,end)+'\nthis.validateBackupPayload=validateBackupPayload;';
+const sandbox={}; vm.runInNewContext(source,sandbox);
+const validate=sandbox.validateBackupPayload;
+const base=()=>({reports:[],reminders:[],profile:{name:'Demo',language:'मराठी'},prefs:{diet:'Vegetarian',activity:'Moderately active',goals:''}});
+let passed=0,failed=0;
+function test(name,fn){try{fn();console.log('PASS: '+name);passed++;}catch(e){console.error('FAIL: '+name+' — '+e.message);failed++;}}
+function rejects(data,pattern){let threw=false;try{validate(data)}catch(e){threw=true;if(pattern&&!pattern.test(e.message))throw new Error('Unexpected error: '+e.message)}if(!threw)throw new Error('Expected validation to reject input');}
+test('accepts a valid empty backup',()=>{const x=validate(base());if(!Array.isArray(x.reports)||!Array.isArray(x.reminders))throw Error('bad result')});
+test('rejects null and array roots',()=>{rejects(null,/JSON object/);rejects([],/JSON object/)});
+test('rejects missing collections/profile/preferences',()=>{rejects({reports:[],reminders:[]},/recognized REVILAC backup/)});
+test('rejects invalid calendar dates',()=>{let x=base();x.reminders=[{title:'Review',date:'2026-02-30',done:false}];rejects(x,/real YYYY-MM-DD/)});
+test('rejects malformed date strings',()=>{let x=base();x.reminders=[{title:'Review',date:'03/04/2026'}];rejects(x,/real YYYY-MM-DD/)});
+test('rejects empty or oversized reminder titles',()=>{let x=base();x.reminders=[{title:' ',date:'2026-10-21'}];rejects(x,/title/);x=base();x.reminders=[{title:'x'.repeat(201),date:'2026-10-21'}];rejects(x,/title/)});
+test('rejects invalid reminder completion flag',()=>{let x=base();x.reminders=[{title:'Review',date:'2026-10-21',done:'false'}];rejects(x,/completion flag/)});
+test('rejects oversized reminder notes and invalid IDs',()=>{let x=base();x.reminders=[{title:'Review',date:'2026-10-21',notes:'n'.repeat(5001)}];rejects(x,/notes/);x=base();x.reminders=[{title:'Review',date:'2026-10-21',id:42}];rejects(x,/Reminder ID/)});
+test('rejects oversized report text',()=>{let x=base();x.reports=[{title:'x'.repeat(20001)}];rejects(x,/too large/)});
+test('rejects report IDs that could break inline handlers',()=>{let x=base();x.reports=[{id:"x');alert(1)//",title:'demo'}];rejects(x,/Report ID/)});
+test('rejects unsupported report fields and non-string values',()=>{let x=base();x.reports=[{title:'demo',unexpected:'x'}];rejects(x,/unsupported fields/);x=base();x.reports=[{title:42}];rejects(x,/field type/)});
+test('rejects unsafe reminder IDs',()=>{let x=base();x.reminders=[{id:"x');alert(1)//",title:'Review',date:'2026-10-21'}];rejects(x,/Reminder ID/)});
+test('rejects blank profile names and blank preference selections',()=>{let x=base();x.profile.name='   ';rejects(x,/Profile name/);x=base();x.prefs.diet='';rejects(x,/Diet preference is invalid/);x=base();x.prefs.activity=' ';rejects(x,/Activity preference is invalid/)});
+test('rejects unsupported profile and preference fields',()=>{let x=base();x.profile.admin='yes';rejects(x,/Profile contains/);x=base();x.prefs.extra='yes';rejects(x,/Preferences contain/)});
+test('rejects more than 5,000 records',()=>{let x=base();x.reports=Array(5001).fill({title:'r'});rejects(x,/too many records/)});
+console.log(`\nBackup restore tests: ${passed}/${passed+failed} passed`);
+if(failed)process.exit(1);

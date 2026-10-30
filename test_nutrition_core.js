@@ -1,0 +1,22 @@
+const c=require('./nutrition-core');let pass=0,fail=0;function t(name,fn){try{if(fn()){console.log('PASS '+name);pass++}else{console.log('FAIL '+name);fail++}}catch(e){console.log('FAIL '+name+' '+e.message);fail++}}
+const base={test:'Demo Hb',value:'12.5',unit:'g/dL',range:'12 - 16',date:'2026-01-01',raw:'synthetic report',specimen:'whole blood'};
+t('valid report fields accepted as data-complete',()=>c.validateReport(base).ok);
+t('missing test flagged',()=>c.validateReport({...base,test:''}).issues.some(x=>x.includes('test')));
+t('ambiguous value flagged',()=>c.validateReport({...base,value:'12.5 mg?'}).issues.some(x=>x.includes('ambiguous')));
+t('unit-bearing reference range accepted for manual review',()=>c.isNumericRange('12.0 - 16.0 g/dL'));
+t('unparseable range flagged',()=>c.validateReport({...base,range:'normal'}).issues.some(x=>x.includes('Reference interval')));
+t('empty original source flagged',()=>c.validateReport({...base,raw:''}).issues.some(x=>x.includes('Original report')));
+t('future date flagged',()=>c.validateReport({...base,date:'2999-01-01'}).issues.some(x=>x.includes('future')));
+t('impossible calendar date rejected',()=>!c.isStrictDate('2026-02-31'));
+t('non-ISO date rejected',()=>!c.isStrictDate('01/02/2026'));
+t('risk flags block meal planning',()=>c.safetyGate(['pregnancy']).blocked);
+t('no flags does not grant clinical clearance',()=>!c.safetyGate([]).clinicalClearance);
+t('food record without provenance rejected',()=>!c.validateFoodRecord({name:'Oats'}).ok);
+t('food nutrient without source rejected',()=>!c.validateFoodRecord({name:'Oats',portionBasis:'100 g dry',sourceName:'Demo',sourceUrl:'https://example.org',sourceDate:'2026-01-01',reviewStatus:'unreviewed',nutrients:{protein:{value:13,unit:'g'}}}).ok);
+t('invalid food source URL rejected',()=>!c.validateFoodRecord({name:'Oats',portionBasis:'100 g',sourceName:'Demo',sourceUrl:'javascript:alert(1)',sourceDate:'2026-01-01',reviewStatus:'unreviewed'}).ok);
+t('unknown food review status rejected',()=>!c.validateFoodRecord({name:'Oats',portionBasis:'100 g',sourceName:'Demo',sourceUrl:'https://example.org',sourceDate:'2026-01-01',reviewStatus:'magic-verified'}).ok);
+t('OCR decimal comma normalized when unambiguous',()=>c.normalizeOcrNumericToken('4,5').value==='4.5');
+t('OCR grouped thousands token is held for manual review',()=>!c.normalizeOcrNumericToken('1,234').ok&&c.normalizeOcrNumericToken('1,234').ambiguous);
+t('OCR mixed decimal separators held for manual review',()=>!c.normalizeOcrNumericToken('1,234.5').ok);
+t('OCR comparator is preserved during normalization',()=>c.normalizeOcrNumericToken('< 4,5').value==='<4.5');
+console.log(`\nNutrition core: ${pass} passed, ${fail} failed`);process.exitCode=fail?1:0;

@@ -1,0 +1,12 @@
+'use strict';
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const source = fs.readFileSync(path.join(__dirname, 'privacy-vault-bootstrap.js'), 'utf8');
+assert.match(source, /function toB64\(bytes\)/, 'vault base64 encoder is a bounded function');
+assert.match(source, /chunkSize\s*=\s*0x8000/, 'large ciphertexts are encoded in bounded chunks');
+assert.match(source, /view\.subarray\(offset, Math\.min\(offset \+ chunkSize, view\.length\)\)/, 'encoder avoids a single large spread call');
+assert.match(source, /iterations\s*<\s*ITERATIONS/, 'rejects weakened PBKDF2 iteration settings');
+assert.match(source, /iterations\s*>\s*1000000/, 'bounds iteration count to avoid maliciously expensive derivation');
+assert.match(source, /Number\.isSafeInteger\(iterations\)/, 'rejects malformed KDF iteration values');
+console.log('Encrypted vault payload/KDF guard checks: 6/6 passed. Structural checks only; browser crypto round-trip still needs browser execution.');

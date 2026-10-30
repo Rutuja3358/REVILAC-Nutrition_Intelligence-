@@ -1,0 +1,15 @@
+'use strict';
+const fs=require('node:fs');
+const assert=require('node:assert/strict');
+const html=fs.readFileSync(require('node:path').join(__dirname,'index.html'),'utf8');
+const saveLine=html.split('\n').find(line=>line.includes("$('reportForm').addEventListener('submit'"))||'';
+assert(saveLine,'report save handler exists');
+assert(!/ocrText:\$\('ocrText'\)\.value\.trim\(\)/.test(saveLine),'raw OCR transcription is not persisted in report record');
+assert(!/fileName:\$\('reportFile'\)\.files\[0\]/.test(saveLine),'uploaded filename is not persisted in report record');
+assert(!/notes:\$\('notes'\)\.value\.trim\(\)/.test(saveLine),'free-text notes are not persisted in report record');
+assert(/Structured report details and measurements are still saved in this browser’s localStorage in readable form, not encrypted/.test(html),'plain-text localStorage limitation is disclosed');
+console.log('PASS raw OCR text omitted from saved report');
+console.log('PASS uploaded filename omitted from saved report');
+console.log('PASS free-text notes omitted from saved report');
+console.log('PASS plaintext localStorage risk disclosed');
+console.log('Privacy minimization checks: 4/4 passed');

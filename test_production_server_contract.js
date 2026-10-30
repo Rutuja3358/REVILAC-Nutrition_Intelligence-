@@ -1,0 +1,32 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const root=__dirname;
+const server=fs.readFileSync(path.join(root,'production-server.js'),'utf8');
+const migration=fs.readFileSync(path.join(root,'migrations','001_initial.sql'),'utf8');
+const migration2=fs.readFileSync(path.join(root,'migrations','002_consent_and_otp_purpose.sql'),'utf8');
+const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+const pkg=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8'));
+assert(pkg.dependencies.pg,'PostgreSQL driver dependency declared');
+assert(pkg.dependencies.nodemailer,'SMTP client dependency declared');
+assert(server.includes('new Pool'),'Production API uses PostgreSQL connection pool');
+assert(server.includes('email_verification_challenges'),'Email verification flow implemented');
+assert(server.includes('/api/password/reset/request')&&server.includes('/api/password/reset/confirm'),'Email OTP password recovery endpoints exist');
+assert(server.includes('request_rate_limits'),'Shared database-backed rate limit implemented');
+assert(server.includes('hashPassword')&&server.includes('crypto.scrypt'),'Password hashing uses scrypt');
+assert(server.includes('hashToken')&&server.includes('createHmac'),'Session tokens are HMAC-hashed before storage');
+assert(server.includes('validateData'),'Sync payload validation enabled');
+assert(server.includes("'Access-Control-Allow-Origin':APP_ORIGIN")||server.includes("'Origin not allowed.'"),'Origin allowlist exists');
+assert(migration.includes('CREATE TABLE IF NOT EXISTS app_users'),'User schema migration exists');
+assert(migration.includes('consent_at')&&migration.includes('consent_version'),'Consent time and version are stored');
+assert(migration.includes('ON DELETE CASCADE'),'Account deletion cascades to related data');
+assert(migration.includes('request_rate_limits'),'Shared rate limit table exists');
+assert(migration2.includes('ADD COLUMN IF NOT EXISTS purpose')&&server.includes("readdirSync(path.join(ROOT,'migrations'))"),'Follow-up migrations are applied idempotently');
+assert(html.includes('/api/verification/request')&&html.includes('/api/verification/confirm'),'UI handles production email verification');
+console.log('PASS production API contract: PostgreSQL, migrations, OTP, distributed throttling, password/session hashing, payload validation and UI verification flow');
+
+// Defense-in-depth headers must remain present in the production static handler.
+const productionHttp = require('node:fs').readFileSync(require('node:path').join(__dirname,'production-server.js'),'utf8');
+for (const h of ['Cross-Origin-Opener-Policy','Cross-Origin-Resource-Policy','X-Permitted-Cross-Domain-Policies',"form-action 'self'","frame-src 'none'",'upgrade-insecure-requests']) if (!productionHttp.includes(h)) throw new Error('Missing production security header/directive: '+h);
+console.log('PASS production defense-in-depth response headers');

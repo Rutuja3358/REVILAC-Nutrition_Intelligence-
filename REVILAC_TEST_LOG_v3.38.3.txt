@@ -1,0 +1,11 @@
+REVILAC Nutrition Intelligence v3.38.3 — test run
+
+npm test: 43/43 test scripts passed.
+npm run test:syntax: 56/56 root JavaScript files passed.
+python test_package.py: structural checks passed.
+Encrypted-vault structural checks: passed.
+ZIP integrity: passed (archive integrity check completed).
+
+A real Chromium browser smoke test was attempted but could not run because the managed browser environment blocks localhost pages. Therefore, vault creation/unlock/reload was NOT verified in an actual browser in this environment.
+
+Limitations: these checks do not establish security certification, clinical validity, OCR accuracy on real reports, privacy/legal compliance, or production infrastructure readiness. The vault does not protect data from XSS/malware while unlocked. Identifiable real-patient production use remains NOT APPROVED.
