@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "REVILAC",
+  "short_name": "REVILAC",
+  "description": "REVILAC \u2014 accessible nutrition intelligence, report tracking and daily wellness support.",
+  "lang": "en-IN",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f1f7f4",
+  "theme_color": "#0b342d",
+  "icons": [
+    {
+      "src": "icons/revilac-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
