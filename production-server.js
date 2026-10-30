@@ -59,6 +59,25 @@ async function api(req,res,url){const p=url.pathname;
  return json(res,404,{error:'API endpoint not found.'});}
 const server=http.createServer(async(req,res)=>{try{const url=new URL(req.url,APP_ORIGIN);if(req.headers.origin&&req.headers.origin!==APP_ORIGIN){return json(res,403,{error:'Origin not allowed.'});}if(req.method==='OPTIONS'){res.writeHead(204,{'Access-Control-Allow-Origin':APP_ORIGIN,'Access-Control-Allow-Headers':'Content-Type, Authorization','Access-Control-Allow-Methods':'GET, POST, PUT, DELETE, OPTIONS','Vary':'Origin'});return res.end();}if(url.pathname.startsWith('/api/'))return await api(req,res,url);if(!['GET','HEAD'].includes(req.method)){res.writeHead(405,{'Allow':'GET, HEAD'});return res.end('Method not allowed');}let pathname;try{pathname=decodeURIComponent(url.pathname)}catch{return json(res,400,{error:'Bad path'});}if(pathname.includes('\0')||pathname.split('/').includes('..'))return json(res,400,{error:'Bad path'});if(pathname==='/')pathname='/index.html';const file=path.resolve(ROOT,'.'+pathname);if(!file.startsWith(ROOT+path.sep))return json(res,403,{error:'Forbidden'});fs.stat(file,(e,st)=>{if(e||!st.isFile()){res.writeHead(404);return res.end('Not found');}res.writeHead(200,{'Content-Type':MIME[path.extname(file).toLowerCase()]||'application/octet-stream','Cache-Control':'no-cache','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Frame-Options':'DENY','Permissions-Policy':'camera=(), microphone=(), geolocation=()','Cross-Origin-Opener-Policy':'same-origin','Cross-Origin-Resource-Policy':'same-origin','X-Permitted-Cross-Domain-Policies':'none','Content-Security-Policy':"default-src 'self' data: blob:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; connect-src 'self' https:; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; manifest-src 'self'; worker-src 'self' blob:; frame-ancestors 'none'; upgrade-insecure-requests"});if(req.method==='HEAD')return res.end();fs.createReadStream(file).pipe(res);});}catch(e){console.error('request failed',e.message);if(!res.headersSent)json(res,500,{error:'Internal server error.'});else res.destroy();}});
 server.requestTimeout=30000;server.headersTimeout=10000;server.keepAliveTimeout=5000;server.maxHeadersCount=100;
-(async()=>{try{for(const migration of fs.readdirSync(path.join(ROOT,'migrations')).filter(n=>/^\d+_.*\.sql$/.test(n)).sort()){await pool.query(fs.readFileSync(path.join(ROOT,'migrations',migration),'utf8'));}await pool.query('SELECT 1');await mailer.verify();server.listen(PORT,HOST,()=>console.log(`REVILAC production API listening on ${HOST}:${PORT}; HTTPS must terminate at trusted reverse proxy ${APP_ORIGIN}.`));}catch(e){console.error('Production startup failed: database or SMTP unavailable.',e.message);process.exit(2);}})();
+(async () => {
+  try {
+    for (const migration of fs.readdirSync(path.join(ROOT, 'migrations'))
+      .filter(n => /^\d+_.*\.sql$/.test(n))
+      .sort()) {
+      await pool.query(
+        fs.readFileSync(path.join(ROOT, 'migrations', migration), 'utf8')
+      );
+    }
+
+    await pool.query('SELECT 1');
+
+    server.listen(PORT, HOST, () => {
+      console.log(`REVILAC production API listening on ${HOST}:${PORT}`);
+    });
+  } catch (e) {
+    console.error('Database startup failed:', e.message);
+    process.exit(2);
+  }
+})();
 const cleanupTimer=setInterval(()=>{pool.query('DELETE FROM app_sessions WHERE expires_at<now()').catch(()=>{});pool.query('DELETE FROM email_verification_challenges WHERE expires_at<now()').catch(()=>{});pool.query('DELETE FROM request_rate_limits WHERE expires_at<now()').catch(()=>{});},60*60*1000);cleanupTimer.unref();
 process.on('SIGTERM',async()=>{clearInterval(cleanupTimer);server.close(async()=>{await pool.end();process.exit(0);});});process.on('SIGINT',async()=>{clearInterval(cleanupTimer);server.close(async()=>{await pool.end();process.exit(0);});});
