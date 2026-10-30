@@ -22,11 +22,9 @@ if (process.env.REVILAC_SESSION_SECRET.length < 32) { console.error('REVILAC_SES
 if (!/^https:\/\//i.test(APP_ORIGIN)) { console.error('APP_ORIGIN must be an HTTPS origin.'); process.exit(2); }
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.PGSSLMODE === 'require'
-    ? { rejectUnauthorized: false }
-    : process.env.PGSSLMODE === 'disable'
-      ? false
-      : { rejectUnauthorized: true },
+  ssl: process.env.PGSSLMODE === 'disable'
+    ? false
+    : { rejectUnauthorized: false },
   max: Number(process.env.PG_POOL_MAX || 10),
   connectionTimeoutMillis: 8000,
   idleTimeoutMillis: 30000
