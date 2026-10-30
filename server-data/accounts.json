@@ -1,0 +1,27 @@
+{
+  "users": [
+    {
+      "id": "c2cb4d8b-fca0-451b-8d61-f4df3be0940e",
+      "email": "tandalerutuja211@gmail.com",
+      "mobile": "9529119451",
+      "salt": "6b17241452662ca6d36d2f6f8a88e71f",
+      "passwordHash": "9abfc8badbb46835fb0c33f48cac5150cac48682aa09a755922484a6e628e5713b49f6533d0d3132d34102deb31791e811551f16a9e34d2a92b7a412809e647f",
+      "createdAt": "2026-10-23T02:26:59.006Z",
+      "data": {
+        "reports": [],
+        "reminders": [],
+        "profile": {},
+        "prefs": {},
+        "wellness": {},
+        "wellnessCheckins": {}
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "userId": "c2cb4d8b-fca0-451b-8d61-f4df3be0940e",
+      "tokenHash": "69c9bc81dbc16676574ad8b8632d86426664aa8ee19117923562a0e13503c004",
+      "expiresAt": 1792849675327
+    }
+  ]
+}
