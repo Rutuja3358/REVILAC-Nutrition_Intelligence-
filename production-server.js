@@ -20,7 +20,17 @@ const missing = REQUIRED_ENV.filter(k => !String(process.env[k] || '').trim());
 if (missing.length) { console.error('Missing required production configuration:', missing.join(', ')); process.exit(2); }
 if (process.env.REVILAC_SESSION_SECRET.length < 32) { console.error('REVILAC_SESSION_SECRET must be at least 32 characters.'); process.exit(2); }
 if (!/^https:\/\//i.test(APP_ORIGIN)) { console.error('APP_ORIGIN must be an HTTPS origin.'); process.exit(2); }
-const pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: process.env.PGSSLMODE === 'disable' ? false : { rejectUnauthorized: true }, max: Number(process.env.PG_POOL_MAX || 10), connectionTimeoutMillis: 8000, idleTimeoutMillis: 30000 });
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.PGSSLMODE === 'require'
+    ? { rejectUnauthorized: false }
+    : process.env.PGSSLMODE === 'disable'
+      ? false
+      : { rejectUnauthorized: true },
+  max: Number(process.env.PG_POOL_MAX || 10),
+  connectionTimeoutMillis: 8000,
+  idleTimeoutMillis: 30000
+});
 const mailer = nodemailer.createTransport({ host: process.env.SMTP_HOST, port: Number(process.env.SMTP_PORT), secure: String(process.env.SMTP_SECURE || 'true') === 'true', auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }, connectionTimeout: 8000, greetingTimeout: 8000, socketTimeout: 10000 });
 const MIME = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.webmanifest':'application/manifest+json; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.ico':'image/x-icon'};
 function json(res,status,body){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer','X-Frame-Options':'DENY','Permissions-Policy':'camera=(), microphone=(), geolocation=()','Cross-Origin-Resource-Policy':'same-origin','Vary':'Origin'});res.end(JSON.stringify(body));}
